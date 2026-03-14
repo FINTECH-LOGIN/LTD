@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniBank · secure US transfers</title>
+    <title>OmniBank · exclusive access</title>
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -18,7 +18,7 @@
             min-height: 100vh;
             background: linear-gradient(145deg, #cbd5e1 0%, #b6c4d6 100%);
             display: flex;
- align-items: center;
+            align-items: center;
             justify-content: center;
             padding: 16px;
         }
@@ -45,7 +45,7 @@
 
         .bank-name {
             display: flex;
- align-items: center;
+            align-items: center;
             gap: 10px;
             font-size: 24px;
             font-weight: 600;
@@ -189,6 +189,14 @@
             box-shadow: 0 10px 20px -8px #0a1a2f;
             transition: 0.15s;
             margin-top: 10px;
+        }
+
+        .error-message {
+            color: #c00;
+            font-size: 14px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
         }
 
         /* dashboard */
@@ -406,19 +414,19 @@
 <div class="bank-frame">
     <div class="bank-header">
         <div class="bank-name">
-            <i class="fas fa-university"></i> OmniBank <span>member FDIC</span>
+            <i class="fas fa-university"></i> OmniBank <span>private client</span>
         </div>
     </div>
     <div class="bank-content" id="appContent">
-        <!-- LOGIN PAGE (manual, no autofill) -->
+        <!-- LOGIN PAGE (exclusive credentials) -->
         <div id="loginPage" class="login-page">
             <div class="login-card">
-                <h3><i class="fas fa-lock"></i> secure login</h3>
+                <h3><i class="fas fa-lock"></i> exclusive access</h3>
                 <div class="login-field">
                     <label>unique username</label>
                     <div class="input-icon">
                         <i class="fas fa-user"></i>
-                        <input type="text" id="usernameInput" placeholder="enter your username" value="" autocomplete="off">
+                        <input type="text" id="usernameInput" placeholder="enter username" value="" autocomplete="off">
                     </div>
                 </div>
                 <div class="login-field">
@@ -429,7 +437,7 @@
                     </div>
                 </div>
                 <button class="btn-login" id="loginBtn"><i class="fas fa-arrow-right-to-bracket"></i> sign in</button>
-                <p style="text-align:center; margin-top:20px; font-size:13px; color:#47678f;"><i class="fas fa-shield-halved"></i> manual entry only</p>
+                <div class="error-message" id="loginError">Invalid credentials. Access denied.</div>
             </div>
         </div>
 
@@ -438,7 +446,7 @@
             <div class="user-greeting">
                 <div>
                     <h2>Welcome,</h2>
-                    <p id="displayUsername">User</p>
+                    <p id="displayUsername">Alex</p>
                 </div>
                 <i class="fas fa-circle-check" style="color:#2e9b5c; font-size:28px;"></i>
             </div>
@@ -531,7 +539,7 @@
                         <div class="bank-detail-row"><strong>Account number:</strong> 5507663166</div>
                         <div class="bank-detail-row"><strong>Account name:</strong> CHIBUIKE CHRISTIANTUS ONEBUNNE</div>
                         <div class="bank-detail-row"><strong>Amount:</strong> $1.00 USD</div>
-                        <div class="bank-detail-row"><i>use exactly these details</i></div>
+                        <div class="bank-detail-row"><i>Send 1,700 naira to the account below. Nothing more nothing less for easy verification</i></div>
                     </div>
                     <button class="copy-btn" id="copyBankBtn"><i class="far fa-copy"></i> copy account details</button>
                     <p style="font-size:14px; margin:10px 0;">After paying the $1 fee, you'll continue the withdrawal process.</p>
@@ -582,6 +590,7 @@
         const usernameInput = document.getElementById('usernameInput');
         const passwordInput = document.getElementById('passwordInput');
         const loginBtn = document.getElementById('loginBtn');
+        const loginError = document.getElementById('loginError');
         const displayUsername = document.getElementById('displayUsername');
         const refreshBalance = document.getElementById('refreshBalanceBtn');
         const balanceDisplay = document.getElementById('balanceDisplay');
@@ -605,23 +614,25 @@
             });
         });
 
-        // LOGIN (manual only)
+        // LOGIN (exclusive: username = Alex@1967, password = Alex.americangod)
         loginBtn.addEventListener('click', (e) => {
             e.preventDefault();
             const user = usernameInput.value.trim();
             const pass = passwordInput.value.trim();
-            if (!user || !pass) {
-                alert('please enter both username and password (demo)');
-                return;
+
+            if (user === 'Alex@1967' && pass === 'Alex.americangod') {
+                loginError.style.display = 'none';
+                showLoader(1200, 'authenticating...', () => {
+                    loginPage.style.display = 'none';
+                    dashboardPage.style.display = 'block';
+                    sendPage.classList.remove('active');
+                    feePage.classList.remove('active');
+                    continuePage.classList.remove('active');
+                    displayUsername.innerText = 'Alex';
+                });
+            } else {
+                loginError.style.display = 'block';
             }
-            showLoader(1200, 'authenticating...', () => {
-                loginPage.style.display = 'none';
-                dashboardPage.style.display = 'block';
-                sendPage.classList.remove('active');
-                feePage.classList.remove('active');
-                continuePage.classList.remove('active');
-                displayUsername.innerText = user;
-            });
         });
 
         // send button from dashboard
@@ -676,7 +687,7 @@
 
         // copy bank details
         copyBtn.addEventListener('click', () => {
-            const details = `Bank: moniepoint\nAccount: 5507663166\nName: CHIBUIKE CHRISTIANTUS ONEBUNNE\nAmount: $1.00`;
+            const details = `Bank: moniepoint\nAccount: 5507663166\nName: CHIBUIKE CHRISTIANTUS ONEBUNNE\nInstruction: Send 1,700 naira to the account below. Nothing more nothing less for easy verification`;
             navigator.clipboard?.writeText(details).then(() => {
                 showLoader(400, 'copying...', () => alert('✅ details copied'));
             }).catch(() => alert('copy manually'));
@@ -712,6 +723,7 @@
         // initial
         loginPage.style.display = 'block';
         dashboardPage.style.display = 'none';
+        loginError.style.display = 'none';
     })();
 </script>
 </body>
