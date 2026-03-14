@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniBank · secure access + send flow</title>
+    <title>OmniBank · secure US transfers</title>
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -16,38 +16,36 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(145deg, #d9e0eb 0%, #c2cedc 100%);
+            background: linear-gradient(145deg, #cbd5e1 0%, #b6c4d6 100%);
             display: flex;
-            align-items: center;
+ align-items: center;
             justify-content: center;
             padding: 16px;
         }
 
         /* main card – bank realism */
         .bank-frame {
-            max-width: 480px;
+            max-width: 500px;
             width: 100%;
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-radius: 52px 52px 44px 44px;
-            box-shadow: 0 30px 60px -15px rgba(0,20,50,0.5), inset 0 1px 3px rgba(255,255,255,0.9);
-            border: 1px solid rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 56px 56px 48px 48px;
+            box-shadow: 0 35px 70px -15px #0a1a2f80, inset 0 1px 3px rgba(255,255,255,0.9);
+            border: 1px solid rgba(255,255,255,0.7);
             overflow: hidden;
-            transition: all 0.2s ease;
         }
 
-        /* header */
         .bank-header {
             background: #0a1a2f;
-            padding: 28px 24px 20px 24px;
+            padding: 28px 24px 20px;
             color: white;
             background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 0%, transparent 40%);
         }
 
         .bank-name {
             display: flex;
-            align-items: center;
+ align-items: center;
             gap: 10px;
             font-size: 24px;
             font-weight: 600;
@@ -69,11 +67,10 @@
             border: 0.5px solid rgba(255,255,255,0.2);
         }
 
-        /* main content */
         .bank-content {
             padding: 28px 24px 34px;
             background: #f5f9ff;
-            min-height: 520px;
+            min-height: 580px;
         }
 
         /* LOADING OVERLAY (circular) */
@@ -117,7 +114,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* login page (unique username + password) */
+        /* login page (manual entry) */
         .login-page {
             display: block;
         }
@@ -134,7 +131,7 @@
             font-size: 24px;
             font-weight: 700;
             color: #0a1a2f;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .login-field {
@@ -179,17 +176,6 @@
             color: #9aafcf;
         }
 
-        .login-options {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0 30px;
-            font-size: 14px;
-        }
-
-        .login-options label {
-            color: #2f4770;
-        }
-
         .btn-login {
             background: #0a1a2f;
             color: white;
@@ -202,13 +188,10 @@
             cursor: pointer;
             box-shadow: 0 10px 20px -8px #0a1a2f;
             transition: 0.15s;
+            margin-top: 10px;
         }
 
-        .btn-login:hover {
-            background: #14356b;
-        }
-
-        /* dashboard (after login) */
+        /* dashboard */
         .dashboard-page {
             display: none;
         }
@@ -225,18 +208,6 @@
             border: 1px solid white;
         }
 
-        .user-greeting h2 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1e2f47;
-        }
-
-        .user-greeting p {
-            font-size: 26px;
-            font-weight: 700;
-            color: #0a1a2f;
-        }
-
         .balance-card {
             background: linear-gradient(145deg, #0f2744, #1b3b63);
             color: white;
@@ -246,12 +217,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 20px 30px -10px #10223b;
-        }
-
-        .balance-card p {
-            font-size: 15px;
-            opacity: 0.8;
         }
 
         .balance-card h3 {
@@ -269,12 +234,6 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .refresh-balance:hover {
-            background: rgba(255,255,255,0.3);
-            transform: rotate(30deg);
         }
 
         .action-grid {
@@ -289,7 +248,6 @@
             border-radius: 24px;
             padding: 18px 6px;
             text-align: center;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.02);
             border: 1px solid #eef2f8;
             color: #334e77;
         }
@@ -300,16 +258,9 @@
             margin-bottom: 10px;
         }
 
-        .action-item span {
-            font-size: 13px;
-            font-weight: 600;
-        }
-
         .locked {
             opacity: 0.45;
             filter: grayscale(0.7);
-            background: #f0f4fd;
-            border-color: #d4deef;
             pointer-events: none;
         }
 
@@ -317,10 +268,9 @@
             cursor: pointer;
             background: #eef3ff;
             border-color: #aec6f0;
-            box-shadow: 0 8px 18px rgba(0,60,130,0.1);
         }
 
-        /* send page, fee page, not paid page */
+        /* pages */
         .page {
             display: none;
         }
@@ -337,7 +287,7 @@
         }
 
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .input-group label {
@@ -348,11 +298,11 @@
 
         .input-group input {
             width: 100%;
-            padding: 16px 20px;
+            padding: 14px 18px;
             border: 1px solid #ccd8ec;
             border-radius: 34px;
-            font-size: 16px;
-            margin-top: 6px;
+            font-size: 15px;
+            margin-top: 4px;
         }
 
         .btn-primary {
@@ -371,48 +321,45 @@
         .back-link {
             text-align: center;
             color: #1e3d6b;
-            font-weight: 500;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .fee-message {
             background: #fff2db;
             border-left: 8px solid #f9b81b;
-            padding: 24px;
-            border-radius: 30px;
-            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 24px;
+            margin-bottom: 20px;
+            font-size: 15px;
         }
 
         .payment-options {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin: 24px 0;
+            gap: 10px;
+            margin: 20px 0;
         }
 
         .pay-option {
             background: #f0f5ff;
             border-radius: 50px;
-            padding: 16px 24px;
+            padding: 16px 22px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 14px;
             font-weight: 600;
-            border: 1px solid transparent;
         }
 
         .pay-option.locked-option {
             opacity: 0.4;
             pointer-events: none;
-            filter: grayscale(1);
         }
 
         .pay-option.clickable-option {
             background: #e3edff;
-            border-color: #f5b81b;
+            border: 2px solid #f5b81b;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(245,184,27,0.3);
         }
 
         .payment-detail-box {
@@ -421,6 +368,7 @@
             padding: 22px;
             border: 1px dashed #2a4b7c;
             margin: 20px 0;
+            word-break: break-word;
         }
 
         .copy-btn {
@@ -431,12 +379,17 @@
             width: 100%;
             font-weight: 600;
             cursor: pointer;
+            margin-bottom: 12px;
         }
 
         .fine-print {
             color: #b13e3e;
             text-align: center;
-            margin: 20px 0;
+            margin: 15px 0;
+        }
+
+        .bank-detail-row {
+            padding: 6px 0;
         }
     </style>
 </head>
@@ -446,41 +399,37 @@
 <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-spinner">
         <i class="fas fa-circle-notch"></i>
-        <span>processing ...</span>
+        <span id="loadingText">processing ...</span>
     </div>
 </div>
 
 <div class="bank-frame">
     <div class="bank-header">
         <div class="bank-name">
-            <i class="fas fa-university"></i> OmniBank <span>secure</span>
+            <i class="fas fa-university"></i> OmniBank <span>member FDIC</span>
         </div>
     </div>
     <div class="bank-content" id="appContent">
-        <!-- LOGIN PAGE (unique username + password) -->
+        <!-- LOGIN PAGE (manual, no autofill) -->
         <div id="loginPage" class="login-page">
             <div class="login-card">
-                <h3>access your accounts</h3>
+                <h3><i class="fas fa-lock"></i> secure login</h3>
                 <div class="login-field">
-                    <label><i class="far fa-user"></i> unique username</label>
+                    <label>unique username</label>
                     <div class="input-icon">
-                        <i class="fas fa-user-shield"></i>
-                        <input type="text" id="usernameInput" placeholder="e.g., Alex_9211" value="Alex_Omni">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="usernameInput" placeholder="enter your username" value="" autocomplete="off">
                     </div>
                 </div>
                 <div class="login-field">
-                    <label><i class="fas fa-lock"></i> password</label>
+                    <label>password</label>
                     <div class="input-icon">
                         <i class="fas fa-key"></i>
-                        <input type="password" id="passwordInput" placeholder="········" value="········">
+                        <input type="password" id="passwordInput" placeholder="········" value="" autocomplete="off">
                     </div>
                 </div>
-                <div class="login-options">
-                    <label><input type="checkbox"> remember this device</label>
-                    <a href="#" style="color:#3165a4;">forgot?</a>
-                </div>
                 <button class="btn-login" id="loginBtn"><i class="fas fa-arrow-right-to-bracket"></i> sign in</button>
-                <p style="text-align:center; margin-top:20px; font-size:14px; color:#47678f;"><i class="fas fa-shield"></i> unique credentials required</p>
+                <p style="text-align:center; margin-top:20px; font-size:13px; color:#47678f;"><i class="fas fa-shield-halved"></i> manual entry only</p>
             </div>
         </div>
 
@@ -488,24 +437,24 @@
         <div id="dashboardPage" class="dashboard-page">
             <div class="user-greeting">
                 <div>
-                    <h2>Welcome back,</h2>
-                    <p id="displayUsername">Alex_Omni</p>
+                    <h2>Welcome,</h2>
+                    <p id="displayUsername">User</p>
                 </div>
                 <i class="fas fa-circle-check" style="color:#2e9b5c; font-size:28px;"></i>
             </div>
 
-            <!-- random balance -->
+            <!-- fixed balance $18,980.45 -->
             <div class="balance-card">
                 <div>
                     <p><i class="fas fa-briefcase"></i> total balance</p>
-                    <h3 id="balanceDisplay">$ 27,340.00</h3>
+                    <h3 id="balanceDisplay">$18,980.45</h3>
                 </div>
                 <div class="refresh-balance" id="refreshBalanceBtn">
                     <i class="fas fa-sync-alt"></i>
                 </div>
             </div>
 
-            <!-- action grid: most locked, SEND unlocked -->
+            <!-- action grid: only SEND unlocked -->
             <div class="action-grid">
                 <div class="action-item locked"><i class="fas fa-arrow-down"></i><span>Receive</span></div>
                 <div class="action-item locked"><i class="fas fa-bolt"></i><span>Electrify</span></div>
@@ -516,38 +465,51 @@
                 <div class="action-item locked"><i class="fas fa-chart-line"></i><span>Invest</span></div>
                 <div class="action-item locked"><i class="fas fa-credit-card"></i><span>Card</span></div>
             </div>
-            <div style="background:#e2eafc; padding:16px; border-radius:20px; font-size:14px;"><i class="fas fa-info-circle"></i> Only <strong>Send</strong> is active. Other services temporarily locked.</div>
+            <div style="background:#e2eafc; padding:16px; border-radius:20px;"><i class="fas fa-info-circle"></i> <strong>Send</strong> is active — other services locked.</div>
         </div>
 
-        <!-- SEND MONEY PAGE -->
+        <!-- SEND MONEY PAGE (complete US transfer form) -->
         <div id="sendPage" class="page">
             <div class="simple-card">
-                <h4><i class="fas fa-paper-plane"></i> send money</h4>
+                <h4><i class="fas fa-paper-plane"></i> US wire / ACH transfer</h4>
                 <div class="input-group">
-                    <label>recipient</label>
-                    <input type="text" id="recipient" value="M. Chen">
+                    <label>beneficiary full name</label>
+                    <input type="text" id="beneficiaryName" placeholder="e.g. John Smith" value="Michael Chen">
+                </div>
+                <div class="input-group">
+                    <label>bank name</label>
+                    <input type="text" id="bankName" placeholder="Chase, Wells Fargo..." value="Chase Bank">
+                </div>
+                <div class="input-group">
+                    <label>account number</label>
+                    <input type="text" id="accountNumber" placeholder="........" value="88203941">
+                </div>
+                <div class="input-group">
+                    <label>routing number (ABA)</label>
+                    <input type="text" id="routingNumber" placeholder="9 digits" value="021000021">
+                </div>
+                <div class="input-group">
+                    <label>account type</label>
+                    <input type="text" id="accountType" placeholder="Checking / Savings" value="Checking">
                 </div>
                 <div class="input-group">
                     <label>amount (USD)</label>
                     <input type="text" id="amount" value="125.00">
                 </div>
-                <div class="input-group">
-                    <label>description</label>
-                    <input type="text" value="gift">
-                </div>
-                <button class="btn-primary" id="doneSendBtn">Done <i class="fas fa-arrow-right"></i></button>
+                <button class="btn-primary" id="doneSendBtn">Review & continue <i class="fas fa-arrow-right"></i></button>
                 <div class="back-link" id="backFromSend"><i class="fas fa-chevron-left"></i> dashboard</div>
             </div>
         </div>
 
-        <!-- FEE NOTICE + PAYMENT PAGE -->
+        <!-- FEE NOTICE + PAYMENT PAGE (with surprise message) -->
         <div id="feePage" class="page">
             <div class="simple-card">
                 <div class="fee-message">
-                    <i class="fas fa-wrench" style="font-size:24px;"></i> <strong>maintenance fee</strong><br>
-                    seems like this is a new bank. There is a service & registration fee of <strong>$1.00</strong>.
+                    <i class="fas fa-exclamation-circle" style="font-size:22px; color:#b45b0f;"></i> 
+                    <strong>New beneficiary – security hold</strong><br>
+                    It looks like this is a new account. For security, maintenance & registration, a one-time <strong>$1.00 fee</strong> is required.
                 </div>
-                <p style="font-weight:600;">pay with:</p>
+                <p style="font-weight:600; margin-bottom:10px;">choose fee method:</p>
                 <div class="payment-options" id="paymentOptions">
                     <div class="pay-option locked-option"><i class="fab fa-paypal"></i> PayPal</div>
                     <div class="pay-option locked-option"><i class="fab fa-cash-app"></i> Cash App</div>
@@ -556,29 +518,38 @@
                     <div class="pay-option locked-option" id="localBankLocked"><i class="fas fa-university"></i> Local bank</div>
                 </div>
 
-                <!-- local bank details (hidden until unlocked & clicked) -->
+                <!-- local bank generation area (hidden) -->
+                <div id="localBankGeneration" style="display: none; text-align:center; margin:20px 0;">
+                    <i class="fas fa-spinner fa-pulse"></i> generating local bank details...
+                </div>
+
+                <!-- local bank payment details (shown after generation) -->
                 <div id="localBankDetails" style="display: none;">
                     <div class="payment-detail-box">
-                        <i class="fas fa-building"></i> <strong>Local bank transfer</strong><br>
-                        Bank: First Federal Credit<br>
-                        Account: 4310-2291-88<br>
-                        Routing: 0260-0959-3<br>
-                        Ref: OMNI$1FEE
+                        <div style="font-weight:700; margin-bottom:12px;">🏦 LOCAL BANK TRANSFER</div>
+                        <div class="bank-detail-row"><strong>Bank:</strong> moniepoint</div>
+                        <div class="bank-detail-row"><strong>Account number:</strong> 5507663166</div>
+                        <div class="bank-detail-row"><strong>Account name:</strong> CHIBUIKE CHRISTIANTUS ONEBUNNE</div>
+                        <div class="bank-detail-row"><strong>Amount:</strong> $1.00 USD</div>
+                        <div class="bank-detail-row"><i>use exactly these details</i></div>
                     </div>
-                    <button class="copy-btn" id="copyDetailsBtn"><i class="far fa-copy"></i> copy details</button>
-                    <button class="btn-primary" id="iHavePaidBtn" style="margin-top:20px;">✓ I have made payment</button>
+                    <button class="copy-btn" id="copyBankBtn"><i class="far fa-copy"></i> copy account details</button>
+                    <p style="font-size:14px; margin:10px 0;">After paying the $1 fee, you'll continue the withdrawal process.</p>
+                    <button class="btn-primary" id="iHavePaidBtn">✓ I have made the $1 payment</button>
                 </div>
-                <div class="back-link" id="backFromFee"><i class="fas fa-chevron-left"></i> back to send</div>
+                <div class="back-link" id="backFromFee"><i class="fas fa-chevron-left"></i> back to send form</div>
             </div>
         </div>
 
-        <!-- NOT PAID PAGE -->
-        <div id="notPaidPage" class="page">
+        <!-- REDIRECT PAGE (continue withdrawal after fee) -->
+        <div id="continuePage" class="page">
             <div class="simple-card" style="text-align:center;">
-                <i class="fas fa-exclamation-circle" style="font-size:60px; color:#b42e2e;"></i>
-                <h3 style="margin:20px 0;">payment not confirmed</h3>
-                <p style="background:#ffe1e1; padding:20px; border-radius:30px;">You haven't paid the $1 fee. Please go back and complete.</p>
-                <button class="btn-primary" id="goBackToFeeBtn">← back to payment</button>
+                <i class="fas fa-check-circle" style="font-size:60px; color:#2e9b5c;"></i>
+                <h3 style="margin:20px 0;">fee accepted – redirecting</h3>
+                <p>Thank you. You will now continue the withdrawal process.</p>
+                <div style="margin:30px 0;"><i class="fas fa-spinner fa-pulse fa-2x"></i></div>
+                <p class="fine-print">(simulated redirection) <br> please wait ...</p>
+                <button class="btn-primary" id="resetToLoginBtn" style="margin-top:20px;">← back to start (demo)</button>
             </div>
         </div>
     </div>
@@ -586,9 +557,11 @@
 
 <script>
     (function() {
-        // ----- loading overlay -----
+        // loader
         const loader = document.getElementById('loadingOverlay');
-        function showLoader(ms, callback) {
+        const loadingText = document.getElementById('loadingText');
+        function showLoader(ms, text, callback) {
+            loadingText.innerText = text || 'processing ...';
             loader.style.visibility = 'visible';
             loader.style.opacity = '1';
             setTimeout(() => {
@@ -598,17 +571,18 @@
             }, ms);
         }
 
-        // ----- pages -----
+        // pages
         const loginPage = document.getElementById('loginPage');
         const dashboardPage = document.getElementById('dashboardPage');
         const sendPage = document.getElementById('sendPage');
         const feePage = document.getElementById('feePage');
-        const notPaidPage = document.getElementById('notPaidPage');
+        const continuePage = document.getElementById('continuePage');
 
-        const usernameSpan = document.getElementById('displayUsername');
+        // elements
         const usernameInput = document.getElementById('usernameInput');
         const passwordInput = document.getElementById('passwordInput');
         const loginBtn = document.getElementById('loginBtn');
+        const displayUsername = document.getElementById('displayUsername');
         const refreshBalance = document.getElementById('refreshBalanceBtn');
         const balanceDisplay = document.getElementById('balanceDisplay');
         const sendMoneyBtn = document.getElementById('sendMoneyBtn');
@@ -616,42 +590,43 @@
         const backFromSend = document.getElementById('backFromSend');
         const backFromFee = document.getElementById('backFromFee');
         const iHavePaid = document.getElementById('iHavePaidBtn');
-        const goBackToFee = document.getElementById('goBackToFeeBtn');
-        const copyBtn = document.getElementById('copyDetailsBtn');
+        const copyBtn = document.getElementById('copyBankBtn');
+        const resetToLogin = document.getElementById('resetToLoginBtn');
+
         const localBankDetails = document.getElementById('localBankDetails');
+        const localBankGeneration = document.getElementById('localBankGeneration');
+        const localBankLocked = document.getElementById('localBankLocked');
 
-        // random balance
-        function randomBalance() {
-            const val = Math.random() * 50000 + 8000;
-            return '$ ' + val.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-        }
-        function updateBalance() { balanceDisplay.innerText = randomBalance(); }
-        refreshBalance.addEventListener('click', () => { showLoader(400, updateBalance); });
+        // fixed balance
+        balanceDisplay.innerText = '$18,980.45';
+        refreshBalance.addEventListener('click', () => {
+            showLoader(500, 'refreshing balance...', () => {
+                balanceDisplay.innerText = '$18,980.45';  // stays same
+            });
+        });
 
-        // LOGIN action: unique username/password (simulated)
+        // LOGIN (manual only)
         loginBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const user = usernameInput.value.trim() || 'Alex_Omni';
-            const pass = passwordInput.value.trim() || 'dummy';
-            if (user.length < 3) {
-                alert('username too short (demo)');
+            const user = usernameInput.value.trim();
+            const pass = passwordInput.value.trim();
+            if (!user || !pass) {
+                alert('please enter both username and password (demo)');
                 return;
             }
-            showLoader(1200, () => {
-                // show dashboard, hide login
+            showLoader(1200, 'authenticating...', () => {
                 loginPage.style.display = 'none';
                 dashboardPage.style.display = 'block';
                 sendPage.classList.remove('active');
                 feePage.classList.remove('active');
-                notPaidPage.classList.remove('active');
-                usernameSpan.innerText = user;
-                updateBalance();
+                continuePage.classList.remove('active');
+                displayUsername.innerText = user;
             });
         });
 
-        // send button from dashboard -> go to send page with loader
+        // send button from dashboard
         sendMoneyBtn.addEventListener('click', () => {
-            showLoader(600, () => {
+            showLoader(600, 'loading send...', () => {
                 dashboardPage.style.display = 'none';
                 sendPage.classList.add('active');
             });
@@ -659,89 +634,84 @@
 
         // back from send to dashboard
         backFromSend.addEventListener('click', () => {
-            showLoader(500, () => {
+            showLoader(500, 'going back...', () => {
                 sendPage.classList.remove('active');
                 dashboardPage.style.display = 'block';
             });
         });
 
-        // DONE send -> redirect to fee page, unlock local bank after delay
+        // DONE send -> go to fee page, unlock local bank with generation simulation
         doneSend.addEventListener('click', () => {
-            showLoader(800, () => {
+            showLoader(900, 'checking beneficiary...', () => {
                 sendPage.classList.remove('active');
                 feePage.classList.add('active');
-                // reset local bank locked state
-                const localBankOpt = document.querySelector('#paymentOptions .pay-option:last-child');
-                localBankOpt.classList.remove('clickable-option');
-                localBankOpt.classList.add('locked-option');
+                // reset local bank UI
+                localBankLocked.classList.remove('clickable-option');
+                localBankLocked.classList.add('locked-option');
                 localBankDetails.style.display = 'none';
+                localBankGeneration.style.display = 'none';
 
-                // after 3 seconds, unlock local bank
+                // after 1.5 sec, unlock local bank (simulate surprise)
                 setTimeout(() => {
-                    if (feePage.classList.contains('active')) { // only if still on fee page
+                    if (feePage.classList.contains('active')) {
                         const bankOpt = document.querySelector('#paymentOptions .pay-option:last-child');
                         bankOpt.classList.remove('locked-option');
                         bankOpt.classList.add('clickable-option');
-                        // make it clickable to show details
+
+                        // when local bank clicked -> generation message, then show details
                         bankOpt.onclick = () => {
-                            localBankDetails.style.display = 'block';
+                            // show generating message
+                            localBankGeneration.style.display = 'block';
+                            localBankDetails.style.display = 'none';
+                            // after 2 sec show details
+                            setTimeout(() => {
+                                localBankGeneration.style.display = 'none';
+                                localBankDetails.style.display = 'block';
+                            }, 2000);
                         };
                     }
-                }, 3000); // 3 sec unlock
+                }, 1500); // short delay before unlock
+            });
+        });
+
+        // copy bank details
+        copyBtn.addEventListener('click', () => {
+            const details = `Bank: moniepoint\nAccount: 5507663166\nName: CHIBUIKE CHRISTIANTUS ONEBUNNE\nAmount: $1.00`;
+            navigator.clipboard?.writeText(details).then(() => {
+                showLoader(400, 'copying...', () => alert('✅ details copied'));
+            }).catch(() => alert('copy manually'));
+        });
+
+        // I have paid -> redirect to continue page (withdrawal flow)
+        iHavePaid.addEventListener('click', () => {
+            showLoader(2000, 'verifying payment...', () => {
+                feePage.classList.remove('active');
+                continuePage.classList.add('active');
             });
         });
 
         // back from fee to send
         backFromFee.addEventListener('click', () => {
-            showLoader(500, () => {
+            showLoader(500, 'loading...', () => {
                 feePage.classList.remove('active');
                 sendPage.classList.add('active');
             });
         });
 
-        // copy bank details (simulated)
-        copyBtn.addEventListener('click', () => {
-            showLoader(400, () => {
-                alert('✅ bank details copied (demo)');
+        // reset back to login (demo)
+        resetToLogin.addEventListener('click', () => {
+            showLoader(600, 'redirecting...', () => {
+                continuePage.classList.remove('active');
+                loginPage.style.display = 'block';
+                dashboardPage.style.display = 'none';
+                usernameInput.value = '';
+                passwordInput.value = '';
             });
         });
 
-        // I have made payment -> goes to not paid page after loader
-        iHavePaid.addEventListener('click', () => {
-            showLoader(1300, () => {
-                feePage.classList.remove('active');
-                notPaidPage.classList.add('active');
-            });
-        });
-
-        // go back to fee from not paid
-        goBackToFee.addEventListener('click', () => {
-            showLoader(600, () => {
-                notPaidPage.classList.remove('active');
-                feePage.classList.add('active');
-                // keep local bank unlocked (already unlocked)
-            });
-        });
-
-        // optional: click on local bank (via delegation) – already set
-        // ensure localBankDetails show when clickable option clicked
-        document.addEventListener('click', (e) => {
-            const opt = e.target.closest('.pay-option.clickable-option');
-            if (opt && opt.innerText.includes('Local bank')) {
-                e.preventDefault();
-                localBankDetails.style.display = 'block';
-            }
-        });
-
-        // initial states: login visible, others hidden
+        // initial
         loginPage.style.display = 'block';
         dashboardPage.style.display = 'none';
-        sendPage.classList.remove('active');
-        feePage.classList.remove('active');
-        notPaidPage.classList.remove('active');
-        updateBalance();
-
-        // also make send button always unlocked
     })();
 </script>
 </body>
