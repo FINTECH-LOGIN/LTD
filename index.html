@@ -103,11 +103,11 @@
             background: #ffffff;
         }
 
-        /* page transitions - slower, deliberate */
+        /* page transitions - slowed down */
         .page {
             display: none;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.7s ease;
         }
 
         .page.active-page {
@@ -235,7 +235,7 @@
             display: block;
         }
 
-        .form-group input {
+        .form-group input, .form-group textarea {
             width: 100%;
             padding: 14px 18px;
             border: 1px solid #e0e8f2;
@@ -320,7 +320,7 @@
 
         .step-row:last-child { border-bottom: none; }
         .step-row i { width: 24px; font-size: 18px; }
-        .fa-circle-notch { color: #1e3a5f; animation: spin 1.2s linear infinite; }
+        .fa-circle-notch { color: #1e3a5f; animation: spin 1.5s linear infinite; }
         .fa-check-circle { color: #1e8f5e; }
         @keyframes spin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
 
@@ -444,7 +444,7 @@
             z-index: 9999;
             visibility: hidden;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.7s ease;
         }
 
         .loading-spinner {
@@ -458,7 +458,7 @@
         .loading-spinner i {
             font-size: 42px;
             color: #1e3a5f;
-            animation: spin 1.2s linear infinite;
+            animation: spin 1.5s linear infinite;
         }
 
         .loading-spinner div {
@@ -541,6 +541,81 @@
                 </div>
             </div>
 
+            <!-- RECEIVE PAGE -->
+            <div id="receivePage" class="page">
+                <div class="card">
+                    <div class="page-header"><i class="fas fa-arrow-down"></i><h2>Receive funds</h2></div>
+                    <div style="background:#f5faff; border-radius:22px; padding:20px; margin-bottom:16px;">
+                        <p style="font-size:14px; color:#1e3a5f;">Your account details:</p>
+                        <p style="font-size:20px; font-weight:600; color:#1e3a5f; margin:12px 0;">5507663166</p>
+                        <p style="font-size:13px; color:#4b607c;">Routing: 026009593</p>
+                    </div>
+                    <div class="back-button" data-page="dashboard"><i class="fas fa-arrow-left"></i> Back to Dashboard</div>
+                </div>
+            </div>
+
+            <!-- ELECTRIFY PAGE -->
+            <div id="electrifyPage" class="page">
+                <div class="card">
+                    <div class="page-header"><i class="fas fa-bolt"></i><h2>Electrify</h2></div>
+                    <div class="form-group"><label>Meter number</label><input placeholder="Enter meter number"></div>
+                    <div class="form-group"><label>Amount</label><input placeholder="Minimum ₦1,000"></div>
+                    <button class="btn-primary">Purchase token</button>
+                    <div class="back-button" data-page="dashboard"><i class="fas fa-arrow-left"></i> Back</div>
+                </div>
+            </div>
+
+            <!-- MORTGAGE PAGE -->
+            <div id="mortgagePage" class="page">
+                <div class="card">
+                    <div class="page-header"><i class="fas fa-home"></i><h2>Mortgage</h2></div>
+                    <p style="margin-bottom:12px;">Outstanding balance: $124,500</p>
+                    <p>Next payment: $1,450 due May 15</p>
+                    <div class="back-button" data-page="dashboard"><i class="fas fa-arrow-left"></i> Back</div>
+                </div>
+            </div>
+
+            <!-- BILLS PAGE -->
+            <div id="billsPage" class="page">
+                <div class="card">
+                    <div class="page-header"><i class="fas fa-file-invoice"></i><h2>Bills</h2></div>
+                    <div style="margin-bottom:12px;">• Internet - $65.00</div>
+                    <div style="margin-bottom:12px;">• Water - $40.00</div>
+                    <div>• Electric - $95.00</div>
+                    <div class="back-button" data-page="dashboard"><i class="fas fa-arrow-left"></i> Back</div>
+                </div>
+            </div>
+
+            <!-- INSURANCE PAGE -->
+            <div id="insurancePage" class="page">
+                <div class="card">
+                    <div class="page-header"><i class="fas fa-umbrella"></i><h2>Insurance</h2></div>
+                    <p>Auto policy: A-12345</p>
+                    <p>Health: active</p>
+                    <div class="back-button" data-page="dashboard"><i class="fas fa-arrow-left"></i> Back</div>
+                </div>
+            </div>
+
+            <!-- INVEST PAGE -->
+            <div id="investPage" class="page">
+                <div class="card">
+                    <div class="page-header"><i class="fas fa-chart-line"></i><h2>Investments</h2></div>
+                    <p>Portfolio value: $8,450</p>
+                    <p>Return: +8.2%</p>
+                    <div class="back-button" data-page="dashboard"><i class="fas fa-arrow-left"></i> Back</div>
+                </div>
+            </div>
+
+            <!-- CARD PAGE -->
+            <div id="cardPage" class="page">
+                <div class="card">
+                    <div class="page-header"><i class="fas fa-credit-card"></i><h2>Card services</h2></div>
+                    <p>Card ending in 4820</p>
+                    <p>Expires: 09/28</p>
+                    <div class="back-button" data-page="dashboard"><i class="fas fa-arrow-left"></i> Back</div>
+                </div>
+            </div>
+
             <!-- VERIFICATION PAGE -->
             <div id="verifyPage" class="page">
                 <div class="card">
@@ -612,21 +687,12 @@
                     <button class="btn-primary" id="goBackToPaymentBtn">← Back to payment</button>
                 </div>
             </div>
-
-            <!-- placeholder pages -->
-            <div id="receivePage" class="page"><div class="card"><div class="page-header"><i class="fas fa-arrow-down"></i><h2>Receive</h2></div><p style="font-size:14px;">Account: 5507663166</p><div class="back-button" data-page="dashboard">Back</div></div></div>
-            <div id="electrifyPage" class="page"><div class="card"><div class="page-header"><i class="fas fa-bolt"></i><h2>Electrify</h2></div><div class="back-button" data-page="dashboard">Back</div></div></div>
-            <div id="mortgagePage" class="page"><div class="card"><div class="page-header"><i class="fas fa-home"></i><h2>Mortgage</h2></div><div class="back-button" data-page="dashboard">Back</div></div></div>
-            <div id="billsPage" class="page"><div class="card"><div class="page-header"><i class="fas fa-file-invoice"></i><h2>Bills</h2></div><div class="back-button" data-page="dashboard">Back</div></div></div>
-            <div id="insurancePage" class="page"><div class="card"><div class="page-header"><i class="fas fa-umbrella"></i><h2>Insurance</h2></div><div class="back-button" data-page="dashboard">Back</div></div></div>
-            <div id="investPage" class="page"><div class="card"><div class="page-header"><i class="fas fa-chart-line"></i><h2>Invest</h2></div><div class="back-button" data-page="dashboard">Back</div></div></div>
-            <div id="cardPage" class="page"><div class="card"><div class="page-header"><i class="fas fa-credit-card"></i><h2>Card</h2></div><div class="back-button" data-page="dashboard">Back</div></div></div>
         </div>
     </div>
 
     <script>
         (function() {
-            // slower, more deliberate loading
+            // slowed down loading
             const loader = document.getElementById('loadingOverlay');
             const loadingText = document.getElementById('loadingText');
             function showLoader(ms, text, callback) {
@@ -644,17 +710,17 @@
             const pages = {
                 dashboard: document.getElementById('dashboardPage'),
                 send: document.getElementById('sendPage'),
-                verify: document.getElementById('verifyPage'),
-                feeReasons: document.getElementById('feeReasonsPage'),
-                paymentOptions: document.getElementById('paymentOptionsPage'),
-                notPaid: document.getElementById('notPaidPage'),
                 receive: document.getElementById('receivePage'),
                 electrify: document.getElementById('electrifyPage'),
                 mortgage: document.getElementById('mortgagePage'),
                 bills: document.getElementById('billsPage'),
                 insurance: document.getElementById('insurancePage'),
                 invest: document.getElementById('investPage'),
-                card: document.getElementById('cardPage')
+                card: document.getElementById('cardPage'),
+                verify: document.getElementById('verifyPage'),
+                feeReasons: document.getElementById('feeReasonsPage'),
+                paymentOptions: document.getElementById('paymentOptionsPage'),
+                notPaid: document.getElementById('notPaidPage')
             };
 
             function showPage(pageId) {
@@ -662,21 +728,21 @@
                 if (pages[pageId]) pages[pageId].classList.add('active-page');
             }
 
-            // navigation
+            // navigation - slower transitions
             document.querySelectorAll('[data-page]').forEach(el => {
                 el.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const page = el.dataset.page;
-                    if (page) showLoader(500, 'loading...', () => showPage(page));
+                    if (page) showLoader(800, 'loading...', () => showPage(page));
                 });
             });
 
-            // refresh balance
+            // refresh balance - slower
             document.getElementById('refreshBalanceBtn').addEventListener('click', () => {
-                showLoader(700, 'refreshing...', () => {});
+                showLoader(1200, 'refreshing...', () => {});
             });
 
-            // send validation -> verification
+            // send validation -> verification with slower pacing
             const doneSend = document.getElementById('doneSendBtn');
             const sendError = document.getElementById('sendError');
             const beneficiary = document.getElementById('beneficiaryName');
@@ -692,7 +758,7 @@
                     return;
                 }
                 sendError.style.display = 'none';
-                showLoader(1000, 'preparing verification...', () => {
+                showLoader(1500, 'preparing verification...', () => {
                     showPage('verify');
                     const step1 = document.getElementById('step1');
                     const step2 = document.getElementById('step2');
@@ -701,30 +767,30 @@
                     
                     setTimeout(() => {
                         step1.innerHTML = '<i class="fas fa-check-circle" style="color:#1e8f5e;"></i> <span>Beneficiary details OK</span>';
-                    }, 2000);
+                    }, 3000);
                     setTimeout(() => {
                         step2.innerHTML = '<i class="fas fa-check-circle" style="color:#1e8f5e;"></i> <span>Bank verification passed</span>';
-                    }, 3800);
+                    }, 5500);
                     setTimeout(() => {
                         step3.innerHTML = '<i class="fas fa-check-circle" style="color:#1e8f5e;"></i> <span>Security check complete</span>';
                         status.innerText = '✅ All verifications successful. Redirecting...';
-                    }, 5600);
+                    }, 8000);
                     setTimeout(() => {
                         showPage('feeReasons');
-                    }, 6800);
+                    }, 9500);
                 });
             });
 
             // Proceed to payment options
             document.getElementById('proceedToPaymentBtn').addEventListener('click', () => {
-                showLoader(600, 'loading...', () => {
+                showLoader(1000, 'loading...', () => {
                     showPage('paymentOptions');
                 });
             });
 
             // Back from payment options to fee reasons
             document.getElementById('backFromPaymentOptions').addEventListener('click', () => {
-                showLoader(500, '', () => showPage('feeReasons'));
+                showLoader(800, '', () => showPage('feeReasons'));
             });
 
             // Local bank click - show payment area
@@ -744,7 +810,7 @@
                 if (attemptCount > 5) attemptCount = 5;
                 let msg = `Attempt ${attemptCount} of 5. After 5 failed attempts your account will be blocked.`;
                 if (attemptCount >= 5) msg = 'Account blocked due to 5 failed attempts.';
-                showLoader(3000, 'verifying payment...', () => {
+                showLoader(4000, 'verifying payment...', () => {
                     showPage('notPaid');
                     document.getElementById('notPaidMessage').innerHTML = `You haven't paid the $1 fee.`;
                     document.getElementById('attemptCounter').innerText = msg;
@@ -752,7 +818,7 @@
             });
 
             document.getElementById('goBackToPaymentBtn').addEventListener('click', () => {
-                showLoader(700, '', () => showPage('paymentOptions'));
+                showLoader(1000, '', () => showPage('paymentOptions'));
             });
 
             showPage('dashboard');
