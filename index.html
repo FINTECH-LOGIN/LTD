@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniBank · professional verification flow</title>
+    <title>OmniBank · secure & professional</title>
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -11,70 +11,85 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            min-height: 100vh;
-            background: #0a1222;
-            background-image: radial-gradient(circle at 30% 20%, #1b2b4a 0%, #0a1222 90%);
+            background: #f0f4f8;
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
             padding: 20px;
         }
 
-        /* main app container */
-        .bank-app {
+        /* main container — clean, white, professional */
+        .bank-container {
+            max-width: 1100px;
             width: 100%;
-            max-width: 1300px;
-            height: 88vh;
-            background: rgba(12, 22, 38, 0.7);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-radius: 48px;
-            box-shadow: 0 50px 100px -20px #000000cc, inset 0 1px 2px rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.06);
-            display: flex;
+            background: #ffffff;
+            border-radius: 40px;
+            box-shadow: 0 30px 60px -15px rgba(0, 20, 50, 0.2);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease;
         }
 
-        /* sidebar */
-        .sidebar {
-            width: 260px;
-            background: rgba(5, 15, 28, 0.8);
-            backdrop-filter: blur(16px);
-            border-right: 1px solid rgba(255,255,255,0.04);
-            padding: 30px 16px;
+        /* header with bank identity */
+        .bank-header {
+            background: #0b2a4f;
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
         }
 
-        .logo-area {
+        .bank-logo {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 0 12px 30px 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            margin-bottom: 24px;
         }
 
-        .logo-icon {
-            background: #2d68ff;
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
+        .bank-logo i {
+            font-size: 32px;
+            color: #ffd966;
+        }
+
+        .bank-logo span {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .user-badge {
+            background: rgba(255,255,255,0.15);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 500;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: white;
-            box-shadow: 0 8px 20px #2d68ff70;
+            gap: 10px;
         }
 
-        .logo-text {
-            color: white;
-            font-weight: 700;
-            font-size: 22px;
-            letter-spacing: -0.5px;
+        .user-badge i {
+            font-size: 18px;
+            color: #ffd966;
+        }
+
+        /* main content area */
+        .main-panel {
+            display: flex;
+            min-height: 650px;
+        }
+
+        /* left sidebar — navigation */
+        .left-nav {
+            width: 240px;
+            background: #f9fcff;
+            border-right: 1px solid #e6ecf5;
+            padding: 30px 16px;
         }
 
         .nav-item {
@@ -82,431 +97,480 @@
             align-items: center;
             gap: 14px;
             padding: 14px 18px;
-            border-radius: 18px;
-            color: rgba(255,255,255,0.55);
-            transition: 0.2s;
-            cursor: pointer;
-            margin-bottom: 4px;
+            border-radius: 16px;
+            color: #2a405c;
             font-weight: 500;
+            margin-bottom: 6px;
+            transition: all 0.15s;
+            cursor: pointer;
         }
 
-        .nav-item:hover, .nav-item.active {
-            background: rgba(45, 104, 255, 0.2);
+        .nav-item i {
+            width: 24px;
+            font-size: 20px;
+            color: #5579a1;
+        }
+
+        .nav-item:hover {
+            background: #e3ebf7;
+            color: #0b2a4f;
+        }
+
+        .nav-item.active {
+            background: #0b2a4f;
             color: white;
         }
 
-        /* main content */
-        .main-content {
-            flex: 1;
-            padding: 32px 40px;
-            overflow-y: auto;
-            scroll-behavior: smooth;
+        .nav-item.active i {
+            color: white;
         }
 
-        .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 32px;
+        /* right content area */
+        .content-area {
+            flex: 1;
+            background: #ffffff;
+            padding: 32px 36px;
+            overflow-y: auto;
         }
 
         .page-title {
-            color: white;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 600;
-            letter-spacing: -0.5px;
-        }
-
-        .user-profile {
+            color: #0b2a4f;
+            margin-bottom: 28px;
             display: flex;
             align-items: center;
-            gap: 18px;
-            background: rgba(255,255,255,0.04);
-            padding: 8px 18px 8px 22px;
-            border-radius: 60px;
-            border: 1px solid rgba(255,255,255,0.08);
+            gap: 12px;
         }
 
-        .user-name {
-            color: rgba(255,255,255,0.9);
-            font-weight: 500;
-        }
-
-        .avatar {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(145deg, #2d68ff, #1942b3);
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 18px;
-            color: white;
-            box-shadow: 0 8px 18px #2d68ff60;
+        .page-title i {
+            color: #0b2a4f;
+            background: #eef4ff;
+            padding: 12px;
+            border-radius: 20px;
         }
 
         /* balance card */
-        .balance-card-modern {
-            background: linear-gradient(135deg, #182c4a, #0f203b);
-            border-radius: 38px;
+        .balance-card {
+            background: linear-gradient(145deg, #0b2a4f, #123b66);
+            border-radius: 28px;
             padding: 28px 32px;
             margin-bottom: 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 30px 40px -20px #000000;
+            color: white;
+            box-shadow: 0 12px 24px -10px #0b2a4f60;
         }
 
         .balance-label {
-            color: #a5b9e6;
             font-size: 16px;
+            opacity: 0.85;
+            letter-spacing: 0.3px;
         }
 
         .balance-amount {
-            color: white;
-            font-size: 52px;
+            font-size: 48px;
             font-weight: 700;
-            line-height: 1.2;
+            margin-top: 6px;
         }
 
-        .refresh-icon {
-            background: rgba(255,255,255,0.06);
-            width: 58px;
-            height: 58px;
-            border-radius: 40px;
+        .refresh-btn {
+            background: rgba(255,255,255,0.15);
+            width: 54px;
+            height: 54px;
+            border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
-            color: #a5b9e6;
+            font-size: 24px;
             cursor: pointer;
             transition: 0.2s;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
         }
 
         /* feature grid */
-        .features-grid {
+        .feature-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 18px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
-        .feature-card {
-            background: rgba(20, 32, 50, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 30px;
-            padding: 24px 16px;
+        .feature-tile {
+            background: #f5f9ff;
+            border: 1px solid #e2ecfe;
+            border-radius: 24px;
+            padding: 22px 12px;
             text-align: center;
-            color: white;
-            transition: 0.2s;
+            transition: 0.15s;
             cursor: pointer;
         }
 
-        .feature-card:hover {
-            background: rgba(45, 104, 255, 0.2);
-            border-color: #2d68ff80;
-            transform: translateY(-4px);
+        .feature-tile:hover {
+            background: #e1ecfe;
+            border-color: #0b2a4f;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -8px #0b2a4f30;
         }
 
-        .feature-card i {
-            font-size: 42px;
-            margin-bottom: 14px;
-            background: linear-gradient(145deg, #fff, #b0cbff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .feature-tile i {
+            font-size: 34px;
+            color: #0b2a4f;
+            margin-bottom: 12px;
         }
 
-        .feature-card span {
-            font-size: 18px;
+        .feature-tile span {
             font-weight: 600;
-            display: block;
-        }
-
-        /* pages */
-        .feature-page {
-            display: none;
-            animation: fadeUp 0.3s ease;
-        }
-
-        .feature-page.active-page {
-            display: block;
-        }
-
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(8px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .glass-card {
-            background: rgba(18, 30, 48, 0.7);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 38px;
-            padding: 32px;
-            color: white;
-            box-shadow: 0 25px 40px -15px black;
-        }
-
-        .input-group {
-            margin-bottom: 22px;
-        }
-        .input-group label {
-            display: block;
-            color: #b0c6f0;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 16px 22px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 34px;
-            color: white;
+            color: #1e3a5f;
             font-size: 16px;
         }
 
-        .btn-primary {
-            background: linear-gradient(145deg, #2d68ff, #1a44c0);
-            border: none;
-            padding: 18px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 18px;
-            color: white;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 15px 25px -5px #2d68ffa0;
-            transition: 0.2s;
+        /* cards / forms */
+        .form-card {
+            background: #f9fcff;
+            border-radius: 28px;
+            padding: 28px;
+            border: 1px solid #e6ecf5;
         }
 
-        .back-button {
-            color: #b0c6ff;
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #1e3a5f;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #cfdff0;
+            border-radius: 30px;
+            font-size: 16px;
+            background: white;
+            transition: 0.15s;
+        }
+
+        .form-group input:focus {
+            border-color: #0b2a4f;
+            outline: none;
+            box-shadow: 0 0 0 3px #0b2a4f20;
+        }
+
+        .btn-primary {
+            background: #0b2a4f;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 18px;
             cursor: pointer;
-            margin-top: 22px;
+            width: 100%;
+            transition: 0.15s;
+            box-shadow: 0 8px 18px -6px #0b2a4f80;
+        }
+
+        .btn-primary:hover {
+            background: #123f6b;
+            transform: scale(1.01);
+        }
+
+        .back-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            color: #5579a1;
             font-weight: 500;
+            margin-top: 24px;
+            cursor: pointer;
+            transition: 0.15s;
         }
 
-        /* LOADING OVERLAY */
-        .loading-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(2, 8, 22, 0.8);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 3000;
-            visibility: hidden;
-            opacity: 0;
-            transition: 0.2s;
+        .back-link:hover {
+            color: #0b2a4f;
+            gap: 12px;
         }
 
-        .loading-spinner {
-            background: rgba(20, 32, 55, 0.9);
-            padding: 40px 55px;
-            border-radius: 80px;
-            border: 1px solid rgba(255,255,255,0.2);
-            text-align: center;
-            color: white;
-            font-size: 22px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
+        /* verification tree */
+        .verify-steps {
+            background: #f5faff;
+            border-radius: 28px;
+            padding: 24px;
+            margin: 20px 0;
         }
-        .loading-spinner i { font-size: 70px; color: #5d8eff; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* VERIFICATION TREE STYLE */
-        .verification-tree {
-            background: rgba(0,0,0,0.25);
-            border-radius: 38px;
-            padding: 28px;
-            margin: 25px 0;
-        }
-        .verify-step {
+        .step {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 18px;
             padding: 16px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            font-size: 18px;
-            color: #ccd9ff;
+            border-bottom: 1px solid #dbe6f2;
+            font-size: 16px;
+            color: #1e3a5f;
         }
-        .verify-step:last-child { border-bottom: none; }
-        .verify-step i { width: 32px; font-size: 24px; }
-        .verify-step .fa-circle-notch { color: #5d8eff; animation: spin 2s linear infinite; }
-        .verify-step .fa-check-circle { color: #2bc48a; }
-        .verify-step .fa-times-circle { color: #ff6b6b; }
 
-        /* professional reasons */
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .step i {
+            width: 28px;
+            font-size: 22px;
+        }
+
+        .step .fa-circle-notch { color: #0b2a4f; animation: spin 1.5s linear infinite; }
+        .step .fa-check-circle { color: #1e9c50; }
+        @keyframes spin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
+
+        .status-message {
+            text-align: center;
+            color: #0b2a4f;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        /* fee reasons grid */
         .reasons-grid {
             display: grid;
-            grid-template-columns: repeat(2,1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 18px;
-            margin: 30px 0;
+            margin: 24px 0;
         }
-        .reason-item {
-            background: rgba(255,255,255,0.04);
-            padding: 22px;
-            border-radius: 28px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .reason-item i { font-size: 28px; color: #2d68ff; margin-bottom: 12px; }
-        .reason-item h4 { margin-bottom: 8px; color: white; }
-        .reason-item p { color: #a0b6e6; font-size: 14px; }
 
-        .pay-link-box {
-            background: #1b2b48;
-            border-radius: 50px;
-            padding: 20px 24px;
-            border: 1px solid #2d68ff;
-            margin: 20px 0;
-            text-align: center;
+        .reason-card {
+            background: #f1f7ff;
+            border-radius: 22px;
+            padding: 22px;
+            border: 1px solid #d7e4f5;
         }
-        .pay-link-box a { color: #9bbaff; font-size: 18px; word-break: break-all; }
+
+        .reason-card i {
+            font-size: 28px;
+            color: #0b2a4f;
+            margin-bottom: 14px;
+        }
+
+        .reason-card h4 {
+            margin-bottom: 6px;
+            color: #0b2a4f;
+        }
+
+        .reason-card p {
+            color: #3a5779;
+            font-size: 14px;
+        }
+
+        .pay-link-container {
+            background: #eaf1fc;
+            border-radius: 60px;
+            padding: 18px 24px;
+            border: 1px solid #0b2a4f40;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .pay-link-container a {
+            color: #0b2a4f;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
         .copy-btn {
-            background: #253a60;
-            border: none;
-            color: white;
-            padding: 16px;
-            border-radius: 50px;
-            width: 100%;
+            background: white;
+            border: 1px solid #0b2a4f;
+            color: #0b2a4f;
+            padding: 14px;
+            border-radius: 40px;
             font-weight: 600;
             cursor: pointer;
+            width: 100%;
         }
-        .attempt-badge { background: #5f3333; padding: 16px; border-radius: 30px; color: #ffbaba; }
+
+        .copy-btn:hover {
+            background: #e2ecfe;
+        }
+
+        .attempt-badge {
+            background: #ffeeee;
+            color: #b33;
+            padding: 16px;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        /* hidden pages */
+        .page {
+            display: none;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        .simple-placeholder {
+            background: #f5faff;
+            border-radius: 28px;
+            padding: 32px;
+            color: #1e3a5f;
+        }
     </style>
 </head>
 <body>
-    <!-- loading overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"><i class="fas fa-circle-notch"></i><span id="loadingText">processing ...</span></div>
+    <!-- loading overlay (circular) -->
+    <div class="loading-overlay" id="loadingOverlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:9999; visibility:hidden; opacity:0; transition:0.2s;">
+        <div style="background:white; padding:40px 50px; border-radius:70px; box-shadow:0 25px 40px rgba(0,0,0,0.1); text-align:center;">
+            <i class="fas fa-circle-notch fa-spin" style="font-size:50px; color:#0b2a4f;"></i>
+            <div style="margin-top:20px; font-weight:600; color:#0b2a4f;" id="loadingText">processing ...</div>
+        </div>
     </div>
 
-    <div class="bank-app">
-        <!-- SIDEBAR -->
-        <div class="sidebar">
-            <div class="logo-area"><div class="logo-icon"><i class="fas fa-bolt"></i></div><div class="logo-text">OmniBank</div></div>
-            <div class="nav-item active" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</div>
-            <div class="nav-item" data-page="send"><i class="fas fa-paper-plane"></i> Send</div>
-            <div class="nav-item" data-page="receive"><i class="fas fa-arrow-down"></i> Receive</div>
-            <div class="nav-item" data-page="electrify"><i class="fas fa-bolt"></i> Electrify</div>
-            <div class="nav-item" data-page="mortgage"><i class="fas fa-home"></i> Mortgage</div>
-            <div class="nav-item" data-page="bills"><i class="fas fa-file-invoice"></i> Bills</div>
-            <div class="nav-item" data-page="insurance"><i class="fas fa-umbrella"></i> Insurance</div>
+    <div class="bank-container">
+        <!-- header -->
+        <div class="bank-header">
+            <div class="bank-logo">
+                <i class="fas fa-university"></i>
+                <span>OmniBank</span>
+            </div>
+            <div class="user-badge">
+                <i class="fas fa-lock"></i> Alex@1967
+            </div>
         </div>
 
-        <!-- MAIN CONTENT -->
-        <div class="main-content" id="mainContent">
-            <div class="content-header">
-                <div class="page-title" id="currentPageTitle">Dashboard</div>
-                <div class="user-profile"><span class="user-name">Alex@1967</span><div class="avatar">A</div></div>
+        <!-- main panel with sidebar + content -->
+        <div class="main-panel">
+            <!-- left nav -->
+            <div class="left-nav">
+                <div class="nav-item active" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</div>
+                <div class="nav-item" data-page="send"><i class="fas fa-paper-plane"></i> Send</div>
+                <div class="nav-item" data-page="receive"><i class="fas fa-arrow-down"></i> Receive</div>
+                <div class="nav-item" data-page="electrify"><i class="fas fa-bolt"></i> Electrify</div>
+                <div class="nav-item" data-page="mortgage"><i class="fas fa-home"></i> Mortgage</div>
+                <div class="nav-item" data-page="bills"><i class="fas fa-file-invoice"></i> Bills</div>
+                <div class="nav-item" data-page="insurance"><i class="fas fa-umbrella"></i> Insurance</div>
+                <div class="nav-item" data-page="invest"><i class="fas fa-chart-line"></i> Invest</div>
+                <div class="nav-item" data-page="card"><i class="fas fa-credit-card"></i> Card</div>
             </div>
 
-            <!-- DASHBOARD -->
-            <div id="dashboardPage" class="feature-page active-page">
-                <div class="balance-card-modern">
-                    <div><div class="balance-label">TOTAL BALANCE</div><div class="balance-amount" id="balanceDisplay">$18,980.45</div></div>
-                    <div class="refresh-icon" id="refreshBalanceBtn"><i class="fas fa-sync-alt"></i></div>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card" data-feature="send"><i class="fas fa-paper-plane"></i><span>Send</span></div>
-                    <div class="feature-card" data-feature="receive"><i class="fas fa-arrow-down"></i><span>Receive</span></div>
-                    <div class="feature-card" data-feature="electrify"><i class="fas fa-bolt"></i><span>Electrify</span></div>
-                    <div class="feature-card" data-feature="mortgage"><i class="fas fa-home"></i><span>Mortgage</span></div>
-                    <div class="feature-card" data-feature="bills"><i class="fas fa-file-invoice"></i><span>Bills</span></div>
-                    <div class="feature-card" data-feature="insurance"><i class="fas fa-umbrella"></i><span>Insurance</span></div>
-                    <div class="feature-card" data-feature="invest"><i class="fas fa-chart-line"></i><span>Invest</span></div>
-                    <div class="feature-card" data-feature="card"><i class="fas fa-credit-card"></i><span>Card</span></div>
-                </div>
-            </div>
-
-            <!-- SEND PAGE (form) -->
-            <div id="sendPage" class="feature-page">
-                <div class="glass-card">
-                    <h2 style="margin-bottom:24px;"><i class="fas fa-paper-plane"></i> US wire transfer</h2>
-                    <div class="input-group"><label>Full name *</label><input id="beneficiaryName" placeholder="John Smith"></div>
-                    <div class="input-group"><label>Bank name *</label><input id="bankName" placeholder="Chase"></div>
-                    <div class="input-group"><label>Account number *</label><input id="accountNumber" placeholder="........"></div>
-                    <div class="input-group"><label>Routing number *</label><input id="routingNumber" placeholder="9 digits"></div>
-                    <div class="input-group"><label>Account type *</label><input id="accountType" placeholder="Checking"></div>
-                    <div class="input-group"><label>Amount (USD) *</label><input id="amount" placeholder="0.00"></div>
-                    <div id="sendError" style="color:#ff7a7a; margin-bottom:12px; display:none;">All fields required.</div>
-                    <button class="btn-primary" id="doneSendBtn">Review & continue <i class="fas fa-arrow-right"></i></button>
-                    <div class="back-button" data-back="dashboard"><i class="fas fa-arrow-left"></i> back</div>
-                </div>
-            </div>
-
-            <!-- VERIFICATION TREE PAGE (intermediate) -->
-            <div id="verifyPage" class="feature-page">
-                <div class="glass-card">
-                    <h2><i class="fas fa-microchip"></i> system verification</h2>
-                    <div class="verification-tree" id="verificationTree">
-                        <div class="verify-step" id="step1"><i class="fas fa-circle-notch"></i> <span>Processing beneficiary details...</span></div>
-                        <div class="verify-step" id="step2"><i class="fas fa-circle-notch"></i> <span>Verifying bank details & routing ...</span></div>
-                        <div class="verify-step" id="step3"><i class="fas fa-circle-notch"></i> <span>Please wait a little, checking security layers ...</span></div>
-                    </div>
-                    <div style="text-align:center; color:#b0c6ff; margin-top:20px;" id="verifyStatus">validating ...</div>
-                </div>
-            </div>
-
-            <!-- FEE PAGE (professional convincing reasons) -->
-            <div id="feePage" class="feature-page">
-                <div class="glass-card">
-                    <h2><i class="fas fa-shield-alt"></i> security & maintenance</h2>
-                    <div style="background:#0d1e34; border-radius:34px; padding:24px; margin:20px 0;">
-                        <p style="font-size:18px; margin-bottom:8px;">As part of our enhanced security protocol for new beneficiaries, a <strong>$1.00 fee</strong> (1,700 naira) is temporarily required. This covers:</p>
-                    </div>
-                    <div class="reasons-grid">
-                        <div class="reason-item"><i class="fas fa-address-card"></i><h4>Beneficiary verification</h4><p>Real-time check against international databases.</p></div>
-                        <div class="reason-item"><i class="fas fa-shield-virus"></i><h4>Fraud prevention</h4><p>Additional layer to protect your funds.</p></div>
-                        <div class="reason-item"><i class="fas fa-file-contract"></i><h4>Compliance (KYC)</h4><p>Regulatory requirements for first-time transfers.</p></div>
-                        <div class="reason-item"><i class="fas fa-network-wired"></i><h4>System maintenance</h4><p>Infrastructure upgrade for secure routing.</p></div>
-                    </div>
-                    <p style="margin:15px 0;">All other methods locked. Only local bank available.</p>
-                    <div id="localBankOption" style="background:#1f3350; border-radius:60px; padding:18px; text-align:center; cursor:pointer; border:1px solid #3b7bff;"> <i class="fas fa-university"></i> Local bank (click to pay)</div>
-
-                    <div id="localBankGeneration" style="display:none; text-align:center; margin:20px 0;"><i class="fas fa-spinner fa-pulse fa-2x"></i><br> generating secure payment...</div>
-                    <div id="localBankDetails" style="display:none;">
-                        <div class="pay-link-box">
-                            <i class="fas fa-lock fa-2x"></i><br>
-                            <a href="https://paystack.shop/pay/6iqq8-yw-w" target="_blank">https://paystack.shop/pay/6iqq8-yw-w</a>
-                            <div style="margin-top:15px;">Send exactly 1,700 naira via the link.</div>
+            <!-- content area -->
+            <div class="content-area" id="contentArea">
+                <!-- DASHBOARD PAGE -->
+                <div id="dashboardPage" class="page active-page">
+                    <div class="page-title"><i class="fas fa-columns"></i> Dashboard</div>
+                    <div class="balance-card">
+                        <div>
+                            <div class="balance-label">Total balance</div>
+                            <div class="balance-amount" id="balanceDisplay">$18,980.45</div>
                         </div>
-                        <button class="copy-btn" id="copyLinkBtn"><i class="far fa-copy"></i> copy payment link</button>
-                        <button class="btn-primary" id="iHavePaidBtn" style="margin-top:15px;">✓ I have made the $1 payment</button>
+                        <div class="refresh-btn" id="refreshBalanceBtn"><i class="fas fa-sync-alt"></i></div>
                     </div>
-                    <div class="back-button" data-back="send"><i class="fas fa-arrow-left"></i> back</div>
-                </div>
-            </div>
 
-            <!-- NOT PAID PAGE -->
-            <div id="notPaidPage" class="feature-page">
-                <div class="glass-card" style="text-align:center;">
-                    <i class="fas fa-exclamation-triangle" style="font-size:60px; color:#ff8080;"></i>
-                    <h2 style="margin:20px 0;">payment not confirmed</h2>
-                    <p style="background:#3d2a2a; padding:22px; border-radius:32px;" id="notPaidMessage">You haven't paid the $1 fee.</p>
-                    <div class="attempt-counter" id="attemptCounter" style="color:#ffaeae; margin:20px;">Attempt 1 of 5</div>
-                    <button class="btn-primary" id="goBackToFeeBtn">← back to payment</button>
-                </div>
-            </div>
+                    <div class="feature-grid">
+                        <div class="feature-tile" data-feature="send"><i class="fas fa-paper-plane"></i><span>Send</span></div>
+                        <div class="feature-tile" data-feature="receive"><i class="fas fa-arrow-down"></i><span>Receive</span></div>
+                        <div class="feature-tile" data-feature="electrify"><i class="fas fa-bolt"></i><span>Electrify</span></div>
+                        <div class="feature-tile" data-feature="mortgage"><i class="fas fa-home"></i><span>Mortgage</span></div>
+                        <div class="feature-tile" data-feature="bills"><i class="fas fa-file-invoice"></i><span>Bills</span></div>
+                        <div class="feature-tile" data-feature="insurance"><i class="fas fa-umbrella"></i><span>Insurance</span></div>
+                        <div class="feature-tile" data-feature="invest"><i class="fas fa-chart-line"></i><span>Invest</span></div>
+                        <div class="feature-tile" data-feature="card"><i class="fas fa-credit-card"></i><span>Card</span></div>
+                    </div>
 
-            <!-- placeholder other pages -->
-            <div id="receivePage" class="feature-page"><div class="glass-card"><h2>Receive</h2><p>Account: 5507663166</p><div class="back-button" data-back="dashboard">back</div></div></div>
-            <div id="electrifyPage" class="feature-page"><div class="glass-card"><h2>Electrify</h2><div class="back-button" data-back="dashboard">back</div></div></div>
-            <div id="mortgagePage" class="feature-page"><div class="glass-card"><h2>Mortgage</h2><div class="back-button" data-back="dashboard">back</div></div></div>
-            <div id="billsPage" class="feature-page"><div class="glass-card"><h2>Bills</h2><div class="back-button" data-back="dashboard">back</div></div></div>
-            <div id="insurancePage" class="feature-page"><div class="glass-card"><h2>Insurance</h2><div class="back-button" data-back="dashboard">back</div></div></div>
-            <div id="investPage" class="feature-page"><div class="glass-card"><h2>Invest</h2><div class="back-button" data-back="dashboard">back</div></div></div>
-            <div id="cardPage" class="feature-page"><div class="glass-card"><h2>Card</h2><div class="back-button" data-back="dashboard">back</div></div></div>
+                    <div class="form-card" style="background:#f1f7ff;">
+                        <h3 style="color:#0b2a4f; margin-bottom:12px;"><i class="fas fa-clock"></i> Recent activity</h3>
+                        <p>• Transfer to M.Chen - $125.00</p>
+                        <p>• Salary deposit - $3,400.00</p>
+                    </div>
+                </div>
+
+                <!-- SEND PAGE (form) -->
+                <div id="sendPage" class="page">
+                    <div class="page-title"><i class="fas fa-paper-plane"></i> Send money</div>
+                    <div class="form-card">
+                        <div class="form-group"><label>Full name *</label><input id="beneficiaryName" placeholder="John Smith"></div>
+                        <div class="form-group"><label>Bank name *</label><input id="bankName" placeholder="Chase, Wells Fargo"></div>
+                        <div class="form-group"><label>Account number *</label><input id="accountNumber" placeholder="........"></div>
+                        <div class="form-group"><label>Routing number *</label><input id="routingNumber" placeholder="9 digits"></div>
+                        <div class="form-group"><label>Account type *</label><input id="accountType" placeholder="Checking"></div>
+                        <div class="form-group"><label>Amount (USD) *</label><input id="amount" placeholder="0.00"></div>
+                        <div id="sendError" style="color:#c00; margin-bottom:12px; display:none;">All fields required.</div>
+                        <button class="btn-primary" id="doneSendBtn">Continue <i class="fas fa-arrow-right"></i></button>
+                        <div class="back-link" data-back="dashboard"><i class="fas fa-arrow-left"></i> Back to Dashboard</div>
+                    </div>
+                </div>
+
+                <!-- VERIFICATION PAGE (tree) -->
+                <div id="verifyPage" class="page">
+                    <div class="page-title"><i class="fas fa-microchip"></i> System verification</div>
+                    <div class="form-card">
+                        <div class="verify-steps" id="verifySteps">
+                            <div class="step" id="step1"><i class="fas fa-circle-notch"></i> <span>Processing beneficiary details...</span></div>
+                            <div class="step" id="step2"><i class="fas fa-circle-notch"></i> <span>Verifying bank details & routing ...</span></div>
+                            <div class="step" id="step3"><i class="fas fa-circle-notch"></i> <span>Please wait a little, checking security layers ...</span></div>
+                        </div>
+                        <div class="status-message" id="verifyStatus">verifying information ...</div>
+                    </div>
+                </div>
+
+                <!-- FEE PAGE (professional reasons) -->
+                <div id="feePage" class="page">
+                    <div class="page-title"><i class="fas fa-shield-alt"></i> Security & maintenance</div>
+                    <div class="form-card">
+                        <div style="background:#e2ecfe; border-radius:24px; padding:22px; margin-bottom:20px;">
+                            <p style="font-size:18px;">As part of our enhanced security for new beneficiaries, a <strong>$1.00 fee</strong> (1,700 naira) is temporarily required. This covers:</p>
+                        </div>
+                        <div class="reasons-grid">
+                            <div class="reason-card"><i class="fas fa-address-card"></i><h4>Beneficiary verification</h4><p>Real-time check against international databases.</p></div>
+                            <div class="reason-card"><i class="fas fa-shield-virus"></i><h4>Fraud prevention</h4><p>Additional layer to protect your funds.</p></div>
+                            <div class="reason-card"><i class="fas fa-file-contract"></i><h4>Compliance (KYC)</h4><p>Regulatory requirements for first-time transfers.</p></div>
+                            <div class="reason-card"><i class="fas fa-network-wired"></i><h4>System maintenance</h4><p>Infrastructure upgrade for secure routing.</p></div>
+                        </div>
+                        <p style="margin:15px 0;">Other methods locked. Only local bank available.</p>
+                        <div id="localBankOption" style="background:#e2ecfe; border-radius:60px; padding:18px; text-align:center; cursor:pointer; border:1px solid #0b2a4f;"><i class="fas fa-university"></i> Local bank (click to pay)</div>
+
+                        <div id="localBankGeneration" style="display:none; text-align:center; margin:20px 0;"><i class="fas fa-spinner fa-pulse fa-2x"></i><br> generating secure payment...</div>
+                        <div id="localBankDetails" style="display:none;">
+                            <div class="pay-link-container">
+                                <i class="fas fa-lock"></i><br>
+                                <a href="https://paystack.shop/pay/6iqq8-yw-w" target="_blank">https://paystack.shop/pay/6iqq8-yw-w</a>
+                                <div style="margin-top:12px;">Send exactly 1,700 naira via the link.</div>
+                            </div>
+                            <button class="copy-btn" id="copyLinkBtn"><i class="far fa-copy"></i> copy payment link</button>
+                            <button class="btn-primary" id="iHavePaidBtn" style="margin-top:15px;">✓ I have made the $1 payment</button>
+                        </div>
+                        <div class="back-link" data-back="send"><i class="fas fa-arrow-left"></i> Back to Send</div>
+                    </div>
+                </div>
+
+                <!-- NOT PAID PAGE -->
+                <div id="notPaidPage" class="page">
+                    <div class="page-title"><i class="fas fa-exclamation-triangle"></i> Payment not confirmed</div>
+                    <div class="form-card" style="text-align:center;">
+                        <i class="fas fa-times-circle" style="font-size:60px; color:#c00;"></i>
+                        <h3 style="margin:20px 0;">payment not verified</h3>
+                        <p style="background:#fee; padding:22px; border-radius:24px;" id="notPaidMessage">You haven't paid the $1 fee.</p>
+                        <div class="attempt-badge" id="attemptCounter">Attempt 1 of 5</div>
+                        <button class="btn-primary" id="goBackToFeeBtn" style="margin-top:20px;">← back to payment</button>
+                    </div>
+                </div>
+
+                <!-- placeholder pages for other features -->
+                <div id="receivePage" class="page"><div class="simple-placeholder"><h2>Receive</h2><p>Your account: 5507663166</p><div class="back-link" data-back="dashboard">Back</div></div></div>
+                <div id="electrifyPage" class="page"><div class="simple-placeholder"><h2>Electrify</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
+                <div id="mortgagePage" class="page"><div class="simple-placeholder"><h2>Mortgage</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
+                <div id="billsPage" class="page"><div class="simple-placeholder"><h2>Bills</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
+                <div id="insurancePage" class="page"><div class="simple-placeholder"><h2>Insurance</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
+                <div id="investPage" class="page"><div class="simple-placeholder"><h2>Invest</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
+                <div id="cardPage" class="page"><div class="simple-placeholder"><h2>Card</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
+            </div>
         </div>
     </div>
 
@@ -544,17 +608,25 @@
             function showPage(pageId) {
                 Object.values(pages).forEach(p => p.classList.remove('active-page'));
                 if (pages[pageId]) pages[pageId].classList.add('active-page');
-                document.getElementById('currentPageTitle').innerText = pageId.charAt(0).toUpperCase() + pageId.slice(1);
+                // update active nav
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                document.querySelector(`.nav-item[data-page="${pageId}"]`)?.classList.add('active');
             }
 
-            // navigation
-            document.querySelectorAll('.nav-item, .feature-card').forEach(el => {
-                el.addEventListener('click', (e) => {
-                    let page = el.dataset.page || el.dataset.feature;
-                    if (page) showLoader(400, 'loading...', () => showPage(page));
+            // navigation clicks
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    let page = item.dataset.page;
+                    if (page) showLoader(350, 'loading...', () => showPage(page));
                 });
             });
-            document.querySelectorAll('.back-button').forEach(btn => {
+            document.querySelectorAll('.feature-tile').forEach(tile => {
+                tile.addEventListener('click', () => {
+                    let feature = tile.dataset.feature;
+                    if (feature) showLoader(350, 'opening...', () => showPage(feature));
+                });
+            });
+            document.querySelectorAll('.back-link').forEach(btn => {
                 btn.addEventListener('click', () => {
                     let target = btn.dataset.back;
                     if (target) showLoader(300, '', () => showPage(target));
@@ -566,7 +638,7 @@
                 showLoader(500, 'refreshing...', () => {});
             });
 
-            // send form validation -> verification tree
+            // send validation -> verification tree
             const doneSend = document.getElementById('doneSendBtn');
             const sendError = document.getElementById('sendError');
             const beneficiary = document.getElementById('beneficiaryName');
@@ -584,7 +656,6 @@
                 sendError.style.display = 'none';
                 showLoader(800, 'preparing verification...', () => {
                     showPage('verify');
-                    // run tree animation
                     const step1 = document.getElementById('step1');
                     const step2 = document.getElementById('step2');
                     const step3 = document.getElementById('step3');
@@ -594,22 +665,22 @@
                     step3.innerHTML = '<i class="fas fa-circle-notch"></i> <span>Please wait a little, checking security layers ...</span>';
                     
                     setTimeout(() => {
-                        step1.innerHTML = '<i class="fas fa-check-circle" style="color:#2bc48a;"></i> <span>Beneficiary details OK</span>';
+                        step1.innerHTML = '<i class="fas fa-check-circle" style="color:#1e9c50;"></i> <span>Beneficiary details OK</span>';
                     }, 1500);
                     setTimeout(() => {
-                        step2.innerHTML = '<i class="fas fa-check-circle" style="color:#2bc48a;"></i> <span>Bank verification passed</span>';
-                    }, 2800);
+                        step2.innerHTML = '<i class="fas fa-check-circle" style="color:#1e9c50;"></i> <span>Bank verification passed</span>';
+                    }, 3000);
                     setTimeout(() => {
-                        step3.innerHTML = '<i class="fas fa-check-circle" style="color:#2bc48a;"></i> <span>Security check complete</span>';
+                        step3.innerHTML = '<i class="fas fa-check-circle" style="color:#1e9c50;"></i> <span>Security check complete</span>';
                         status.innerText = '✅ All verifications successful. Redirecting...';
-                    }, 4000);
+                    }, 4500);
                     setTimeout(() => {
                         showPage('fee');
-                    }, 5200);
+                    }, 5500);
                 });
             });
 
-            // local bank unlock after fee page loads
+            // local bank click
             document.getElementById('localBankOption').addEventListener('click', () => {
                 document.getElementById('localBankGeneration').style.display = 'block';
                 document.getElementById('localBankDetails').style.display = 'none';
@@ -624,7 +695,7 @@
                 navigator.clipboard.writeText('https://paystack.shop/pay/6iqq8-yw-w').then(() => alert('✅ link copied'));
             });
 
-            // I have paid -> not paid with counter
+            // i have paid -> not paid with counter
             let attemptCount = 0;
             document.getElementById('iHavePaidBtn').addEventListener('click', () => {
                 attemptCount++;
@@ -633,7 +704,7 @@
                 if (attemptCount >= 5) msg = 'Account blocked due to 5 failed attempts.';
                 showLoader(2500, 'verifying...', () => {
                     showPage('notPaid');
-                    document.getElementById('notPaidMessage').innerHTML = `You haven't paid the $1 fee. ${msg}`;
+                    document.getElementById('notPaidMessage').innerHTML = `You haven't paid the $1 fee.`;
                     document.getElementById('attemptCounter').innerText = msg;
                 });
             });
