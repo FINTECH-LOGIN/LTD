@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniBank · secure & professional</title>
+    <title>Omni · modern fintech</title>
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -15,175 +15,120 @@
         }
 
         body {
-            background: #f0f4f8;
+            background: #f6f9fc;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 16px;
         }
 
-        /* main container — clean, white, professional */
-        .bank-container {
-            max-width: 1100px;
+        /* main app — full width, modern fintech style */
+        .fintech-app {
+            max-width: 1200px;
             width: 100%;
             background: #ffffff;
-            border-radius: 40px;
-            box-shadow: 0 30px 60px -15px rgba(0, 20, 50, 0.2);
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.2s ease;
         }
 
-        /* header with bank identity */
-        .bank-header {
-            background: #0b2a4f;
+        /* header — simple, clean */
+        .app-header {
             padding: 20px 32px;
+            background: #ffffff;
+            border-bottom: 1px solid #f0f3f8;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            color: white;
         }
 
-        .bank-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .bank-logo i {
-            font-size: 32px;
-            color: #ffd966;
-        }
-
-        .bank-logo span {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .user-badge {
-            background: rgba(255,255,255,0.15);
-            padding: 10px 24px;
-            border-radius: 40px;
-            font-weight: 500;
+        .logo {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .user-badge i {
-            font-size: 18px;
-            color: #ffd966;
-        }
-
-        /* main content area */
-        .main-panel {
-            display: flex;
-            min-height: 650px;
-        }
-
-        /* left sidebar — navigation */
-        .left-nav {
-            width: 240px;
-            background: #f9fcff;
-            border-right: 1px solid #e6ecf5;
-            padding: 30px 16px;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 18px;
-            border-radius: 16px;
-            color: #2a405c;
-            font-weight: 500;
-            margin-bottom: 6px;
-            transition: all 0.15s;
-            cursor: pointer;
-        }
-
-        .nav-item i {
-            width: 24px;
-            font-size: 20px;
-            color: #5579a1;
-        }
-
-        .nav-item:hover {
-            background: #e3ebf7;
-            color: #0b2a4f;
-        }
-
-        .nav-item.active {
-            background: #0b2a4f;
-            color: white;
-        }
-
-        .nav-item.active i {
-            color: white;
-        }
-
-        /* right content area */
-        .content-area {
-            flex: 1;
-            background: #ffffff;
-            padding: 32px 36px;
-            overflow-y: auto;
-        }
-
-        .page-title {
+        .logo i {
             font-size: 28px;
-            font-weight: 600;
-            color: #0b2a4f;
-            margin-bottom: 28px;
+            color: #1a4cff;
+            background: #eef3ff;
+            padding: 8px;
+            border-radius: 16px;
+        }
+
+        .logo span {
+            font-weight: 700;
+            font-size: 22px;
+            color: #121926;
+        }
+
+        .user-menu {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 24px;
         }
 
-        .page-title i {
-            color: #0b2a4f;
-            background: #eef4ff;
-            padding: 12px;
-            border-radius: 20px;
+        .user-name {
+            font-weight: 500;
+            color: #2c3e50;
         }
 
-        /* balance card */
+        .avatar {
+            width: 44px;
+            height: 44px;
+            background: #1a4cff;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        /* main container — full width, no split */
+        .main-container {
+            padding: 32px;
+        }
+
+        /* balance card — like Monzo/Starling */
         .balance-card {
-            background: linear-gradient(145deg, #0b2a4f, #123b66);
+            background: #1a4cff;
             border-radius: 28px;
             padding: 28px 32px;
             margin-bottom: 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             color: white;
-            box-shadow: 0 12px 24px -10px #0b2a4f60;
+            box-shadow: 0 12px 30px -8px #1a4cff80;
         }
 
         .balance-label {
-            font-size: 16px;
+            font-size: 15px;
             opacity: 0.85;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
         }
 
         .balance-amount {
             font-size: 48px;
             font-weight: 700;
-            margin-top: 6px;
+            margin: 8px 0 4px;
+        }
+
+        .balance-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
         }
 
         .refresh-btn {
-            background: rgba(255,255,255,0.15);
-            width: 54px;
-            height: 54px;
+            background: rgba(255,255,255,0.2);
+            width: 48px;
+            height: 48px;
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
             cursor: pointer;
             transition: 0.2s;
         }
@@ -193,221 +138,84 @@
             transform: rotate(90deg);
         }
 
-        /* feature grid */
+        /* quick actions — horizontal scroll on mobile, grid on desktop */
+        .quick-actions {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+        }
+
+        .action-item {
+            background: #f4f7fc;
+            border-radius: 30px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: #1a2b3e;
+            transition: 0.2s;
+            cursor: pointer;
+            flex: 1 0 auto;
+            justify-content: center;
+            border: 1px solid transparent;
+        }
+
+        .action-item i {
+            font-size: 20px;
+            color: #1a4cff;
+        }
+
+        .action-item:hover {
+            background: #e9effa;
+            border-color: #1a4cff30;
+        }
+
+        /* feature grid — 4x2 for all services */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 30px;
+            gap: 16px;
+            margin-bottom: 36px;
         }
 
-        .feature-tile {
-            background: #f5f9ff;
-            border: 1px solid #e2ecfe;
-            border-radius: 24px;
-            padding: 22px 12px;
-            text-align: center;
-            transition: 0.15s;
-            cursor: pointer;
-        }
-
-        .feature-tile:hover {
-            background: #e1ecfe;
-            border-color: #0b2a4f;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px -8px #0b2a4f30;
-        }
-
-        .feature-tile i {
-            font-size: 34px;
-            color: #0b2a4f;
-            margin-bottom: 12px;
-        }
-
-        .feature-tile span {
-            font-weight: 600;
-            color: #1e3a5f;
-            font-size: 16px;
-        }
-
-        /* cards / forms */
-        .form-card {
+        .feature-card {
             background: #f9fcff;
-            border-radius: 28px;
-            padding: 28px;
-            border: 1px solid #e6ecf5;
-        }
-
-        .form-group {
-            margin-bottom: 22px;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            color: #1e3a5f;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 16px 20px;
-            border: 1px solid #cfdff0;
-            border-radius: 30px;
-            font-size: 16px;
-            background: white;
-            transition: 0.15s;
-        }
-
-        .form-group input:focus {
-            border-color: #0b2a4f;
-            outline: none;
-            box-shadow: 0 0 0 3px #0b2a4f20;
-        }
-
-        .btn-primary {
-            background: #0b2a4f;
-            color: white;
-            border: none;
-            padding: 18px;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 18px;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.15s;
-            box-shadow: 0 8px 18px -6px #0b2a4f80;
-        }
-
-        .btn-primary:hover {
-            background: #123f6b;
-            transform: scale(1.01);
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #5579a1;
-            font-weight: 500;
-            margin-top: 24px;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-
-        .back-link:hover {
-            color: #0b2a4f;
-            gap: 12px;
-        }
-
-        /* verification tree */
-        .verify-steps {
-            background: #f5faff;
-            border-radius: 28px;
-            padding: 24px;
-            margin: 20px 0;
-        }
-
-        .step {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            padding: 16px 0;
-            border-bottom: 1px solid #dbe6f2;
-            font-size: 16px;
-            color: #1e3a5f;
-        }
-
-        .step:last-child {
-            border-bottom: none;
-        }
-
-        .step i {
-            width: 28px;
-            font-size: 22px;
-        }
-
-        .step .fa-circle-notch { color: #0b2a4f; animation: spin 1.5s linear infinite; }
-        .step .fa-check-circle { color: #1e9c50; }
-        @keyframes spin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
-
-        .status-message {
+            border: 1px solid #eef2f8;
+            border-radius: 24px;
+            padding: 24px 12px;
             text-align: center;
-            color: #0b2a4f;
-            font-weight: 600;
-            margin-top: 20px;
+            transition: 0.2s;
+            cursor: pointer;
         }
 
-        /* fee reasons grid */
-        .reasons-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-            margin: 24px 0;
+        .feature-card:hover {
+            border-color: #1a4cff;
+            background: #f2f7ff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -10px #1a4cff40;
         }
 
-        .reason-card {
-            background: #f1f7ff;
-            border-radius: 22px;
-            padding: 22px;
-            border: 1px solid #d7e4f5;
-        }
-
-        .reason-card i {
-            font-size: 28px;
-            color: #0b2a4f;
+        .feature-card i {
+            font-size: 32px;
+            color: #1a4cff;
             margin-bottom: 14px;
         }
 
-        .reason-card h4 {
-            margin-bottom: 6px;
-            color: #0b2a4f;
-        }
-
-        .reason-card p {
-            color: #3a5779;
-            font-size: 14px;
-        }
-
-        .pay-link-container {
-            background: #eaf1fc;
-            border-radius: 60px;
-            padding: 18px 24px;
-            border: 1px solid #0b2a4f40;
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .pay-link-container a {
-            color: #0b2a4f;
+        .feature-card span {
             font-weight: 600;
-            word-break: break-all;
+            color: #1a2b3e;
         }
 
-        .copy-btn {
-            background: white;
-            border: 1px solid #0b2a4f;
-            color: #0b2a4f;
-            padding: 14px;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
+        /* page container — all pages appear here */
+        .page-container {
+            background: #f9fcff;
+            border-radius: 28px;
+            padding: 28px;
+            border: 1px solid #eef2f8;
         }
 
-        .copy-btn:hover {
-            background: #e2ecfe;
-        }
-
-        .attempt-badge {
-            background: #ffeeee;
-            color: #b33;
-            padding: 16px;
-            border-radius: 30px;
-            text-align: center;
-        }
-
-        /* hidden pages */
         .page {
             display: none;
         }
@@ -416,160 +224,342 @@
             display: block;
         }
 
-        .simple-placeholder {
-            background: #f5faff;
-            border-radius: 28px;
-            padding: 32px;
-            color: #1e3a5f;
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .page-header i {
+            font-size: 28px;
+            color: #1a4cff;
+            background: #eef3ff;
+            padding: 12px;
+            border-radius: 20px;
+        }
+
+        .page-header h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #121926;
+        }
+
+        /* forms */
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            font-size: 16px;
+            background: white;
+            transition: 0.15s;
+        }
+
+        .form-group input:focus {
+            border-color: #1a4cff;
+            outline: none;
+            box-shadow: 0 0 0 3px #1a4cff20;
+        }
+
+        .btn-primary {
+            background: #1a4cff;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.15s;
+        }
+
+        .btn-primary:hover {
+            background: #0f3ad0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #1a4cff;
+            font-weight: 500;
+            margin-top: 24px;
+            cursor: pointer;
+        }
+
+        /* verification tree */
+        .verify-steps {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid #eef2f8;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 16px 0;
+            border-bottom: 1px solid #eef2f8;
+            font-size: 16px;
+            color: #1a2b3e;
+        }
+
+        .step:last-child { border-bottom: none; }
+        .step i { width: 28px; font-size: 22px; }
+        .step .fa-circle-notch { color: #1a4cff; animation: spin 1.5s linear infinite; }
+        .step .fa-check-circle { color: #22a65e; }
+        @keyframes spin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
+
+        /* reasons grid */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 18px;
+            margin: 24px 0;
+        }
+
+        .reason-card {
+            background: #f4faff;
+            border-radius: 22px;
+            padding: 22px;
+        }
+
+        .reason-card i {
+            font-size: 26px;
+            color: #1a4cff;
+            margin-bottom: 12px;
+        }
+
+        .reason-card h4 {
+            margin-bottom: 6px;
+            color: #121926;
+        }
+
+        .reason-card p {
+            color: #4a5c72;
+            font-size: 14px;
+        }
+
+        .pay-link-container {
+            background: #f0f6ff;
+            border-radius: 30px;
+            padding: 20px;
+            border: 1px solid #1a4cff40;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .pay-link-container a {
+            color: #1a4cff;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: white;
+            border: 1px solid #1a4cff;
+            color: #1a4cff;
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .attempt-badge {
+            background: #fee;
+            color: #b33;
+            padding: 16px;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        /* loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.2s;
+        }
+
+        .loading-spinner {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 60px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .loading-spinner i {
+            font-size: 50px;
+            color: #1a4cff;
+            animation: spin 1s linear infinite;
         }
     </style>
 </head>
 <body>
-    <!-- loading overlay (circular) -->
-    <div class="loading-overlay" id="loadingOverlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:9999; visibility:hidden; opacity:0; transition:0.2s;">
-        <div style="background:white; padding:40px 50px; border-radius:70px; box-shadow:0 25px 40px rgba(0,0,0,0.1); text-align:center;">
-            <i class="fas fa-circle-notch fa-spin" style="font-size:50px; color:#0b2a4f;"></i>
-            <div style="margin-top:20px; font-weight:600; color:#0b2a4f;" id="loadingText">processing ...</div>
+    <!-- loading -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-circle-notch"></i>
+            <div style="margin-top:20px; font-weight:600; color:#1a4cff;" id="loadingText">processing ...</div>
         </div>
     </div>
 
-    <div class="bank-container">
+    <div class="fintech-app">
         <!-- header -->
-        <div class="bank-header">
-            <div class="bank-logo">
-                <i class="fas fa-university"></i>
-                <span>OmniBank</span>
+        <div class="app-header">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>omni</span>
             </div>
-            <div class="user-badge">
-                <i class="fas fa-lock"></i> Alex@1967
+            <div class="user-menu">
+                <span class="user-name">Alex@1967</span>
+                <div class="avatar">A</div>
             </div>
         </div>
 
-        <!-- main panel with sidebar + content -->
-        <div class="main-panel">
-            <!-- left nav -->
-            <div class="left-nav">
-                <div class="nav-item active" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</div>
-                <div class="nav-item" data-page="send"><i class="fas fa-paper-plane"></i> Send</div>
-                <div class="nav-item" data-page="receive"><i class="fas fa-arrow-down"></i> Receive</div>
-                <div class="nav-item" data-page="electrify"><i class="fas fa-bolt"></i> Electrify</div>
-                <div class="nav-item" data-page="mortgage"><i class="fas fa-home"></i> Mortgage</div>
-                <div class="nav-item" data-page="bills"><i class="fas fa-file-invoice"></i> Bills</div>
-                <div class="nav-item" data-page="insurance"><i class="fas fa-umbrella"></i> Insurance</div>
-                <div class="nav-item" data-page="invest"><i class="fas fa-chart-line"></i> Invest</div>
-                <div class="nav-item" data-page="card"><i class="fas fa-credit-card"></i> Card</div>
+        <!-- main area -->
+        <div class="main-container">
+            <!-- balance card -->
+            <div class="balance-card">
+                <div class="balance-label">Total balance</div>
+                <div class="balance-amount" id="balanceDisplay">$18,980.45</div>
+                <div class="balance-footer">
+                    <span>✓ Available</span>
+                    <div class="refresh-btn" id="refreshBalanceBtn"><i class="fas fa-sync-alt"></i></div>
+                </div>
             </div>
 
-            <!-- content area -->
-            <div class="content-area" id="contentArea">
-                <!-- DASHBOARD PAGE -->
+            <!-- quick actions -->
+            <div class="quick-actions">
+                <div class="action-item" data-page="send"><i class="fas fa-paper-plane"></i> Send</div>
+                <div class="action-item" data-page="receive"><i class="fas fa-arrow-down"></i> Receive</div>
+                <div class="action-item" data-page="electrify"><i class="fas fa-bolt"></i> Electrify</div>
+                <div class="action-item" data-page="mortgage"><i class="fas fa-home"></i> Mortgage</div>
+            </div>
+
+            <!-- feature grid (all services) -->
+            <div class="feature-grid">
+                <div class="feature-card" data-page="send"><i class="fas fa-paper-plane"></i><span>Send</span></div>
+                <div class="feature-card" data-page="receive"><i class="fas fa-arrow-down"></i><span>Receive</span></div>
+                <div class="feature-card" data-page="electrify"><i class="fas fa-bolt"></i><span>Electrify</span></div>
+                <div class="feature-card" data-page="mortgage"><i class="fas fa-home"></i><span>Mortgage</span></div>
+                <div class="feature-card" data-page="bills"><i class="fas fa-file-invoice"></i><span>Bills</span></div>
+                <div class="feature-card" data-page="insurance"><i class="fas fa-umbrella"></i><span>Insurance</span></div>
+                <div class="feature-card" data-page="invest"><i class="fas fa-chart-line"></i><span>Invest</span></div>
+                <div class="feature-card" data-page="card"><i class="fas fa-credit-card"></i><span>Card</span></div>
+            </div>
+
+            <!-- dynamic page area -->
+            <div class="page-container">
+                <!-- DASHBOARD HOME (default) -->
                 <div id="dashboardPage" class="page active-page">
-                    <div class="page-title"><i class="fas fa-columns"></i> Dashboard</div>
-                    <div class="balance-card">
-                        <div>
-                            <div class="balance-label">Total balance</div>
-                            <div class="balance-amount" id="balanceDisplay">$18,980.45</div>
-                        </div>
-                        <div class="refresh-btn" id="refreshBalanceBtn"><i class="fas fa-sync-alt"></i></div>
+                    <div class="page-header">
+                        <i class="fas fa-home"></i>
+                        <h2>Home</h2>
                     </div>
-
-                    <div class="feature-grid">
-                        <div class="feature-tile" data-feature="send"><i class="fas fa-paper-plane"></i><span>Send</span></div>
-                        <div class="feature-tile" data-feature="receive"><i class="fas fa-arrow-down"></i><span>Receive</span></div>
-                        <div class="feature-tile" data-feature="electrify"><i class="fas fa-bolt"></i><span>Electrify</span></div>
-                        <div class="feature-tile" data-feature="mortgage"><i class="fas fa-home"></i><span>Mortgage</span></div>
-                        <div class="feature-tile" data-feature="bills"><i class="fas fa-file-invoice"></i><span>Bills</span></div>
-                        <div class="feature-tile" data-feature="insurance"><i class="fas fa-umbrella"></i><span>Insurance</span></div>
-                        <div class="feature-tile" data-feature="invest"><i class="fas fa-chart-line"></i><span>Invest</span></div>
-                        <div class="feature-tile" data-feature="card"><i class="fas fa-credit-card"></i><span>Card</span></div>
-                    </div>
-
-                    <div class="form-card" style="background:#f1f7ff;">
-                        <h3 style="color:#0b2a4f; margin-bottom:12px;"><i class="fas fa-clock"></i> Recent activity</h3>
-                        <p>• Transfer to M.Chen - $125.00</p>
-                        <p>• Salary deposit - $3,400.00</p>
+                    <p style="color:#2c3e50; line-height:1.6;">Welcome back, Alex. Your recent transactions and insights will appear here.</p>
+                    <div style="margin-top:24px; background:#f4f7fc; border-radius:22px; padding:22px;">
+                        <p><i class="fas fa-circle-check" style="color:#22a65e;"></i> Transfer to M.Chen · $125.00</p>
+                        <p><i class="fas fa-circle-arrow-down"></i> Salary deposit · $3,400.00</p>
                     </div>
                 </div>
 
                 <!-- SEND PAGE (form) -->
                 <div id="sendPage" class="page">
-                    <div class="page-title"><i class="fas fa-paper-plane"></i> Send money</div>
-                    <div class="form-card">
-                        <div class="form-group"><label>Full name *</label><input id="beneficiaryName" placeholder="John Smith"></div>
-                        <div class="form-group"><label>Bank name *</label><input id="bankName" placeholder="Chase, Wells Fargo"></div>
-                        <div class="form-group"><label>Account number *</label><input id="accountNumber" placeholder="........"></div>
-                        <div class="form-group"><label>Routing number *</label><input id="routingNumber" placeholder="9 digits"></div>
-                        <div class="form-group"><label>Account type *</label><input id="accountType" placeholder="Checking"></div>
-                        <div class="form-group"><label>Amount (USD) *</label><input id="amount" placeholder="0.00"></div>
-                        <div id="sendError" style="color:#c00; margin-bottom:12px; display:none;">All fields required.</div>
-                        <button class="btn-primary" id="doneSendBtn">Continue <i class="fas fa-arrow-right"></i></button>
-                        <div class="back-link" data-back="dashboard"><i class="fas fa-arrow-left"></i> Back to Dashboard</div>
-                    </div>
+                    <div class="page-header"><i class="fas fa-paper-plane"></i><h2>Send money</h2></div>
+                    <div class="form-group"><label>Full name *</label><input id="beneficiaryName" placeholder="John Smith"></div>
+                    <div class="form-group"><label>Bank name *</label><input id="bankName" placeholder="Chase, Wells Fargo"></div>
+                    <div class="form-group"><label>Account number *</label><input id="accountNumber" placeholder="........"></div>
+                    <div class="form-group"><label>Routing number *</label><input id="routingNumber" placeholder="9 digits"></div>
+                    <div class="form-group"><label>Account type *</label><input id="accountType" placeholder="Checking"></div>
+                    <div class="form-group"><label>Amount (USD) *</label><input id="amount" placeholder="0.00"></div>
+                    <div id="sendError" style="color:#c00; margin-bottom:12px; display:none;">All fields required.</div>
+                    <button class="btn-primary" id="doneSendBtn">Continue</button>
+                    <div class="back-link" data-page="dashboard"><i class="fas fa-arrow-left"></i> Back to Home</div>
                 </div>
 
                 <!-- VERIFICATION PAGE (tree) -->
                 <div id="verifyPage" class="page">
-                    <div class="page-title"><i class="fas fa-microchip"></i> System verification</div>
-                    <div class="form-card">
-                        <div class="verify-steps" id="verifySteps">
-                            <div class="step" id="step1"><i class="fas fa-circle-notch"></i> <span>Processing beneficiary details...</span></div>
-                            <div class="step" id="step2"><i class="fas fa-circle-notch"></i> <span>Verifying bank details & routing ...</span></div>
-                            <div class="step" id="step3"><i class="fas fa-circle-notch"></i> <span>Please wait a little, checking security layers ...</span></div>
-                        </div>
-                        <div class="status-message" id="verifyStatus">verifying information ...</div>
+                    <div class="page-header"><i class="fas fa-microchip"></i><h2>Verification</h2></div>
+                    <div class="verify-steps" id="verifySteps">
+                        <div class="step" id="step1"><i class="fas fa-circle-notch"></i> <span>Processing beneficiary details...</span></div>
+                        <div class="step" id="step2"><i class="fas fa-circle-notch"></i> <span>Verifying bank details & routing ...</span></div>
+                        <div class="step" id="step3"><i class="fas fa-circle-notch"></i> <span>Please wait a little, checking security layers ...</span></div>
                     </div>
+                    <div style="text-align:center; color:#1a4cff; margin-top:20px;" id="verifyStatus">verifying ...</div>
                 </div>
 
                 <!-- FEE PAGE (professional reasons) -->
                 <div id="feePage" class="page">
-                    <div class="page-title"><i class="fas fa-shield-alt"></i> Security & maintenance</div>
-                    <div class="form-card">
-                        <div style="background:#e2ecfe; border-radius:24px; padding:22px; margin-bottom:20px;">
-                            <p style="font-size:18px;">As part of our enhanced security for new beneficiaries, a <strong>$1.00 fee</strong> (1,700 naira) is temporarily required. This covers:</p>
-                        </div>
-                        <div class="reasons-grid">
-                            <div class="reason-card"><i class="fas fa-address-card"></i><h4>Beneficiary verification</h4><p>Real-time check against international databases.</p></div>
-                            <div class="reason-card"><i class="fas fa-shield-virus"></i><h4>Fraud prevention</h4><p>Additional layer to protect your funds.</p></div>
-                            <div class="reason-card"><i class="fas fa-file-contract"></i><h4>Compliance (KYC)</h4><p>Regulatory requirements for first-time transfers.</p></div>
-                            <div class="reason-card"><i class="fas fa-network-wired"></i><h4>System maintenance</h4><p>Infrastructure upgrade for secure routing.</p></div>
-                        </div>
-                        <p style="margin:15px 0;">Other methods locked. Only local bank available.</p>
-                        <div id="localBankOption" style="background:#e2ecfe; border-radius:60px; padding:18px; text-align:center; cursor:pointer; border:1px solid #0b2a4f;"><i class="fas fa-university"></i> Local bank (click to pay)</div>
-
-                        <div id="localBankGeneration" style="display:none; text-align:center; margin:20px 0;"><i class="fas fa-spinner fa-pulse fa-2x"></i><br> generating secure payment...</div>
-                        <div id="localBankDetails" style="display:none;">
-                            <div class="pay-link-container">
-                                <i class="fas fa-lock"></i><br>
-                                <a href="https://paystack.shop/pay/6iqq8-yw-w" target="_blank">https://paystack.shop/pay/6iqq8-yw-w</a>
-                                <div style="margin-top:12px;">Send exactly 1,700 naira via the link.</div>
-                            </div>
-                            <button class="copy-btn" id="copyLinkBtn"><i class="far fa-copy"></i> copy payment link</button>
-                            <button class="btn-primary" id="iHavePaidBtn" style="margin-top:15px;">✓ I have made the $1 payment</button>
-                        </div>
-                        <div class="back-link" data-back="send"><i class="fas fa-arrow-left"></i> Back to Send</div>
+                    <div class="page-header"><i class="fas fa-shield-alt"></i><h2>Security check</h2></div>
+                    <div style="background:#eef3ff; border-radius:22px; padding:22px; margin-bottom:20px;">
+                        <p style="font-size:18px;">A one-time <strong>$1.00 fee</strong> (1,700 naira) is required for this new beneficiary. This covers:</p>
                     </div>
+                    <div class="reasons-grid">
+                        <div class="reason-card"><i class="fas fa-address-card"></i><h4>Beneficiary verification</h4><p>Real-time check against international databases.</p></div>
+                        <div class="reason-card"><i class="fas fa-shield-virus"></i><h4>Fraud prevention</h4><p>Additional layer to protect your funds.</p></div>
+                        <div class="reason-card"><i class="fas fa-file-contract"></i><h4>Compliance (KYC)</h4><p>Regulatory requirements for first-time transfers.</p></div>
+                        <div class="reason-card"><i class="fas fa-network-wired"></i><h4>System maintenance</h4><p>Infrastructure upgrade for secure routing.</p></div>
+                    </div>
+                    <p style="margin:15px 0;">Other methods locked. Only local bank available.</p>
+                    <div id="localBankOption" style="background:#eef3ff; border-radius:60px; padding:18px; text-align:center; cursor:pointer; border:1px solid #1a4cff;"><i class="fas fa-university"></i> Local bank (click to pay)</div>
+
+                    <div id="localBankGeneration" style="display:none; text-align:center; margin:20px 0;"><i class="fas fa-spinner fa-pulse fa-2x"></i><br> generating secure payment...</div>
+                    <div id="localBankDetails" style="display:none;">
+                        <div class="pay-link-container">
+                            <i class="fas fa-lock"></i><br>
+                            <a href="https://paystack.shop/pay/6iqq8-yw-w" target="_blank">https://paystack.shop/pay/6iqq8-yw-w</a>
+                            <div style="margin-top:12px;">Send exactly 1,700 naira via the link.</div>
+                        </div>
+                        <button class="copy-btn" id="copyLinkBtn"><i class="far fa-copy"></i> copy payment link</button>
+                        <button class="btn-primary" id="iHavePaidBtn" style="margin-top:15px;">✓ I have made the $1 payment</button>
+                    </div>
+                    <div class="back-link" data-page="send"><i class="fas fa-arrow-left"></i> Back to Send</div>
                 </div>
 
                 <!-- NOT PAID PAGE -->
                 <div id="notPaidPage" class="page">
-                    <div class="page-title"><i class="fas fa-exclamation-triangle"></i> Payment not confirmed</div>
-                    <div class="form-card" style="text-align:center;">
-                        <i class="fas fa-times-circle" style="font-size:60px; color:#c00;"></i>
-                        <h3 style="margin:20px 0;">payment not verified</h3>
-                        <p style="background:#fee; padding:22px; border-radius:24px;" id="notPaidMessage">You haven't paid the $1 fee.</p>
+                    <div class="page-header"><i class="fas fa-exclamation-triangle"></i><h2>Payment not confirmed</h2></div>
+                    <div style="background:#fee; border-radius:22px; padding:22px; text-align:center;">
+                        <i class="fas fa-times-circle" style="font-size:48px; color:#c00;"></i>
+                        <p style="margin:20px 0;" id="notPaidMessage">You haven't paid the $1 fee.</p>
                         <div class="attempt-badge" id="attemptCounter">Attempt 1 of 5</div>
                         <button class="btn-primary" id="goBackToFeeBtn" style="margin-top:20px;">← back to payment</button>
                     </div>
                 </div>
 
                 <!-- placeholder pages for other features -->
-                <div id="receivePage" class="page"><div class="simple-placeholder"><h2>Receive</h2><p>Your account: 5507663166</p><div class="back-link" data-back="dashboard">Back</div></div></div>
-                <div id="electrifyPage" class="page"><div class="simple-placeholder"><h2>Electrify</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
-                <div id="mortgagePage" class="page"><div class="simple-placeholder"><h2>Mortgage</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
-                <div id="billsPage" class="page"><div class="simple-placeholder"><h2>Bills</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
-                <div id="insurancePage" class="page"><div class="simple-placeholder"><h2>Insurance</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
-                <div id="investPage" class="page"><div class="simple-placeholder"><h2>Invest</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
-                <div id="cardPage" class="page"><div class="simple-placeholder"><h2>Card</h2><div class="back-link" data-back="dashboard">Back</div></div></div>
+                <div id="receivePage" class="page"><div class="page-header"><i class="fas fa-arrow-down"></i><h2>Receive</h2></div><p>Your account: 5507663166</p><div class="back-link" data-page="dashboard">Back</div></div>
+                <div id="electrifyPage" class="page"><div class="page-header"><i class="fas fa-bolt"></i><h2>Electrify</h2></div><p>Prepaid tokens</p><div class="back-link" data-page="dashboard">Back</div></div>
+                <div id="mortgagePage" class="page"><div class="page-header"><i class="fas fa-home"></i><h2>Mortgage</h2></div><p>Outstanding: $124,500</p><div class="back-link" data-page="dashboard">Back</div></div>
+                <div id="billsPage" class="page"><div class="page-header"><i class="fas fa-file-invoice"></i><h2>Bills</h2></div><p>Upcoming bills</p><div class="back-link" data-page="dashboard">Back</div></div>
+                <div id="insurancePage" class="page"><div class="page-header"><i class="fas fa-umbrella"></i><h2>Insurance</h2></div><p>Auto, life, health</p><div class="back-link" data-page="dashboard">Back</div></div>
+                <div id="investPage" class="page"><div class="page-header"><i class="fas fa-chart-line"></i><h2>Invest</h2></div><p>Portfolio +8.2%</p><div class="back-link" data-page="dashboard">Back</div></div>
+                <div id="cardPage" class="page"><div class="page-header"><i class="fas fa-credit-card"></i><h2>Card</h2></div><p>•••• 4820</p><div class="back-link" data-page="dashboard">Back</div></div>
             </div>
         </div>
     </div>
@@ -608,28 +598,13 @@
             function showPage(pageId) {
                 Object.values(pages).forEach(p => p.classList.remove('active-page'));
                 if (pages[pageId]) pages[pageId].classList.add('active-page');
-                // update active nav
-                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-                document.querySelector(`.nav-item[data-page="${pageId}"]`)?.classList.add('active');
             }
 
-            // navigation clicks
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    let page = item.dataset.page;
+            // all navigation clicks
+            document.querySelectorAll('[data-page]').forEach(el => {
+                el.addEventListener('click', () => {
+                    let page = el.dataset.page;
                     if (page) showLoader(350, 'loading...', () => showPage(page));
-                });
-            });
-            document.querySelectorAll('.feature-tile').forEach(tile => {
-                tile.addEventListener('click', () => {
-                    let feature = tile.dataset.feature;
-                    if (feature) showLoader(350, 'opening...', () => showPage(feature));
-                });
-            });
-            document.querySelectorAll('.back-link').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    let target = btn.dataset.back;
-                    if (target) showLoader(300, '', () => showPage(target));
                 });
             });
 
@@ -638,7 +613,7 @@
                 showLoader(500, 'refreshing...', () => {});
             });
 
-            // send validation -> verification tree
+            // send validation -> verification
             const doneSend = document.getElementById('doneSendBtn');
             const sendError = document.getElementById('sendError');
             const beneficiary = document.getElementById('beneficiaryName');
@@ -654,7 +629,7 @@
                     return;
                 }
                 sendError.style.display = 'none';
-                showLoader(800, 'preparing verification...', () => {
+                showLoader(800, 'preparing...', () => {
                     showPage('verify');
                     const step1 = document.getElementById('step1');
                     const step2 = document.getElementById('step2');
@@ -664,23 +639,17 @@
                     step2.innerHTML = '<i class="fas fa-circle-notch"></i> <span>Verifying bank details & routing ...</span>';
                     step3.innerHTML = '<i class="fas fa-circle-notch"></i> <span>Please wait a little, checking security layers ...</span>';
                     
+                    setTimeout(() => { step1.innerHTML = '<i class="fas fa-check-circle" style="color:#22a65e;"></i> <span>Beneficiary details OK</span>'; }, 1500);
+                    setTimeout(() => { step2.innerHTML = '<i class="fas fa-check-circle" style="color:#22a65e;"></i> <span>Bank verification passed</span>'; }, 3000);
                     setTimeout(() => {
-                        step1.innerHTML = '<i class="fas fa-check-circle" style="color:#1e9c50;"></i> <span>Beneficiary details OK</span>';
-                    }, 1500);
-                    setTimeout(() => {
-                        step2.innerHTML = '<i class="fas fa-check-circle" style="color:#1e9c50;"></i> <span>Bank verification passed</span>';
-                    }, 3000);
-                    setTimeout(() => {
-                        step3.innerHTML = '<i class="fas fa-check-circle" style="color:#1e9c50;"></i> <span>Security check complete</span>';
+                        step3.innerHTML = '<i class="fas fa-check-circle" style="color:#22a65e;"></i> <span>Security check complete</span>';
                         status.innerText = '✅ All verifications successful. Redirecting...';
                     }, 4500);
-                    setTimeout(() => {
-                        showPage('fee');
-                    }, 5500);
+                    setTimeout(() => { showPage('fee'); }, 5500);
                 });
             });
 
-            // local bank click
+            // local bank
             document.getElementById('localBankOption').addEventListener('click', () => {
                 document.getElementById('localBankGeneration').style.display = 'block';
                 document.getElementById('localBankDetails').style.display = 'none';
@@ -690,12 +659,10 @@
                 }, 2000);
             });
 
-            // copy link
             document.getElementById('copyLinkBtn').addEventListener('click', () => {
                 navigator.clipboard.writeText('https://paystack.shop/pay/6iqq8-yw-w').then(() => alert('✅ link copied'));
             });
 
-            // i have paid -> not paid with counter
             let attemptCount = 0;
             document.getElementById('iHavePaidBtn').addEventListener('click', () => {
                 attemptCount++;
